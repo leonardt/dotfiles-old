@@ -22,3 +22,5 @@ bindkey -M emacs '^N' history-substring-search-down
 # bind k and j for VI mode
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
+
+fpath=(/usr/local/share/zsh-completions $fpath)
