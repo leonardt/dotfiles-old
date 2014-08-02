@@ -27,3 +27,4 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 
 source $HOME/dotfiles/zsh/.zsh_aliases
 
+export EDITOR='mvim -v'
