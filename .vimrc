@@ -20,6 +20,17 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-repeat'
 
+NeoBundle 'junegunn/vim-pseudocl'
+NeoBundle 'junegunn/vim-oblique'
+NeoBundle 'wincent/command-t', {
+    \ 'build': {
+    \   'mac': 'sh -c "cd ruby/command-t && ruby extconf.rb && make"'
+    \  }
+    \}
+
+NeoBundle 'xolox/vim-misc'
+NeoBundle 'xolox/vim-easytags'
+
 NeoBundle 'chriskempson/base16-vim'
 
 call neobundle#end()
@@ -33,6 +44,7 @@ NeoBundleCheck
 
 syntax on
 
+" Colorscheme {{{
 colorscheme base16-tomorrow
 set background=dark
 
@@ -186,4 +198,14 @@ augroup ft_vim
 
 	au FileType vim setlocal foldmethod=marker
 augroup END
+" }}}
+
+" Command-T {{{
+nnoremap <silent> <leader>b :CommandTMRU<CR>
+nnoremap <silent> <leader>f :CommandTTag<CR>
+let g:CommandTFileScanner="find"
+" }}}
+
+" EasyTags {{{
+let g:easytags_async=1
 " }}}

@@ -1,4 +1,4 @@
-source $HOME/dotfiles/antigen/antigen.zsh
+source $HOME/dotfiles/zsh/antigen/antigen.zsh
 
 antigen bundle git
 antigen bundle brew
