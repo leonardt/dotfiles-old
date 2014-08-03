@@ -6,6 +6,7 @@ antigen bundle pip
 antigen bundle python
 antigen bundle virtualenvwrapper
 antigen bundle command-not-found
+antigen bundle history
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle sindresorhus/pure
 antigen bundle zsh-users/zsh-history-substring-search
