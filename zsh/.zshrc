@@ -3,6 +3,8 @@ source $HOME/dotfiles/zsh/antigen/antigen.zsh
 antigen bundle git
 antigen bundle brew
 antigen bundle pip
+antigen bundle python
+antigen bundle virtualenvwrapper
 antigen bundle command-not-found
 antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle sindresorhus/pure
