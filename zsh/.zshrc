@@ -1,16 +1,18 @@
 source $HOME/dotfiles/zsh/antigen/antigen.zsh
 
-antigen bundle git
-antigen bundle brew
-antigen bundle pip
-antigen bundle python
-antigen bundle github
-antigen bundle virtualenvwrapper
-antigen bundle command-not-found
-antigen bundle history
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle sindresorhus/pure
-antigen bundle zsh-users/zsh-history-substring-search
+antigen bundles <<EOBUNDLES
+    git
+    brew
+    pip
+    python
+    github
+    virtualenvwrapper
+    command-not-found
+    history
+    zsh-users/zsh-syntax-highlighting
+    sindresorhus/pure
+    zsh-users/zsh-history-substring-search
+EOBUNDLES
 
 antigen apply
 
