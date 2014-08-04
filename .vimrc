@@ -19,7 +19,10 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-repeat'
+NeoBundle 'tpope/vim-dispatch'
 
+NeoBundle 'justinmk/vim-sneak'
+NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'junegunn/vim-pseudocl'
 NeoBundle 'junegunn/vim-oblique'
 NeoBundle 'wincent/command-t', {
@@ -27,9 +30,21 @@ NeoBundle 'wincent/command-t', {
     \   'mac': 'sh -c "cd ruby/command-t && ruby extconf.rb && make"'
     \  }
     \}
+NeoBundle 'rking/ag.vim'
 
 NeoBundle 'xolox/vim-misc'
 NeoBundle 'xolox/vim-easytags'
+
+NeoBundle 'scrooloose/syntastic'
+
+NeoBundle 'Valloric/YouCompleteMe', {
+    \ 'build': {
+    \   'mac': './install.sh --clang-completer'
+    \  }
+    \}
+
+NeoBundle 'SirVer/ultisnips'
+NeoBundle 'honza/vim-snippets'
 
 NeoBundle 'chriskempson/base16-vim'
 
@@ -208,4 +223,15 @@ let g:CommandTFileScanner="find"
 
 " EasyTags {{{
 let g:easytags_async=1
+" }}}
+
+" YouCompleteMe {{{
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_seed_identifiers_with_syntax = 1
+" }}}
+
+" UltiSnips {{{
+let g:UltiSnipsExpandTrigger="<c-ktab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " }}}

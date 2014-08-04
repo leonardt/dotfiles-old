@@ -4,6 +4,7 @@ antigen bundle git
 antigen bundle brew
 antigen bundle pip
 antigen bundle python
+antigen bundle github
 antigen bundle virtualenvwrapper
 antigen bundle command-not-found
 antigen bundle history
