@@ -4,6 +4,3 @@
 [submodule "antigen"]
 	path = zsh/antigen
 	url = https://github.com/zsh-users/antigen.git
-[submodule "iterm/iterm-colors-pencil"]
-	path = iterm/iterm-colors-pencil
-	url = https://github.com/mattly/iterm-colors-pencil
