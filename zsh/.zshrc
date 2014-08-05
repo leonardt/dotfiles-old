@@ -1,7 +1,10 @@
 source $HOME/dotfiles/zsh/antigen/antigen.zsh
 
+antigen use oh-my-zsh
+
 antigen bundles <<EOBUNDLES
     git
+    extract
     brew
     pip
     python
@@ -12,6 +15,7 @@ antigen bundles <<EOBUNDLES
     zsh-users/zsh-syntax-highlighting
     sindresorhus/pure
     zsh-users/zsh-history-substring-search
+    vi-mode
 EOBUNDLES
 
 antigen apply
@@ -34,6 +38,8 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 source $HOME/dotfiles/zsh/.zsh_aliases
 
 export EDITOR='mvim -v'
-source ~/dotfiles/zsh/.fzf.zsh
 
 export PATH="/usr/local/bin:$PATH"
+
+# Fix backspace in vi mode
+bindkey "^?" backward-delete-char
