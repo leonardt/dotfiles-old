@@ -16,6 +16,8 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " Refer to |:NeoBundle-examples|.
 " Note: You don't set neobundle setting in .gvimrc!
 
+NeoBundle 'szw/vim-ctrlspace'
+
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-commentary'
 NeoBundle 'tpope/vim-surround'
@@ -48,6 +50,7 @@ NeoBundle 'SirVer/ultisnips'
 NeoBundle 'honza/vim-snippets'
 
 NeoBundle 'jmcantrell/vim-virtualenv'
+NeoBundle 'klen/python-mode'
 
 NeoBundle 'chriskempson/base16-vim'
 
@@ -98,6 +101,9 @@ set autowrite
 set autoread
 set title
 set linebreak
+set scrolloff=10
+set sidescrolloff=5
+set scrolljump=5
 
 " Time out on key codes but not mappings.
 " Basically this makes terminal Vim work sanely.
@@ -228,6 +234,7 @@ augroup END
 " Command-T {{{
 nnoremap <silent> <leader>b :CommandTMRU<CR>
 nnoremap <silent> <leader>f :CommandTTag<CR>
+nnoremap <silent> <c-p> :CommandT<CR>
 let g:CommandTFileScanner="find"
 " }}}
 
@@ -258,3 +265,11 @@ nnoremap <Leader>gpl :Gpull<CR>
 nnoremap <Leader>gps :Gpush<CR>
 " }}}
 
+" python-mode {{{
+let g:pymode_rope_completion = 0
+" }}}
+
+" ctrl-space {{{
+let g:ctrlspace_save_workspace_on_exit = 1
+" let g:ctrlspace_load_last_workspace_on_start = 1
+" }}}
