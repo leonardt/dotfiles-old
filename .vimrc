@@ -17,6 +17,9 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " Note: You don't set neobundle setting in .gvimrc!
 
 NeoBundle 'szw/vim-ctrlspace'
+NeoBundle 'Raimondi/delimitMate'
+NeoBundle 'kshenoy/vim-signature'
+NeoBundle 'airblade/vim-gitgutter'
 
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-commentary'
@@ -51,6 +54,8 @@ NeoBundle 'honza/vim-snippets'
 
 NeoBundle 'jmcantrell/vim-virtualenv'
 NeoBundle 'klen/python-mode'
+
+NeoBundle 'kchmck/vim-coffee-script'
 
 NeoBundle 'chriskempson/base16-vim'
 
@@ -171,6 +176,8 @@ set wildignore+=*.orig                           " Merge resolution files
 " Clojure/Leiningen
 set wildignore+=classes
 set wildignore+=lib
+set wildignore+=**/bower_components/*
+set wildignore+=**/node_modules/*
 
 " }}}
 
@@ -266,10 +273,11 @@ nnoremap <Leader>gps :Gpush<CR>
 " }}}
 
 " python-mode {{{
+let g:pymode_options = 0
 let g:pymode_rope_completion = 0
 " }}}
 
-" ctrl-space {{{
+" ctrlspace {{{
 let g:ctrlspace_save_workspace_on_exit = 1
-" let g:ctrlspace_load_last_workspace_on_start = 1
+let g:ctrlspace_load_last_workspace_on_start = 1
 " }}}
