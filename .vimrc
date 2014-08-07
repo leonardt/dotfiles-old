@@ -1,74 +1,46 @@
-if has('vim_starting')
-  set nocompatible               " Be iMproved
+call plug#begin('~/.vim/plugged')
 
-  " Required:
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
-endif
+Plug 'szw/vim-ctrlspace'
+Plug 'Raimondi/delimitMate'
+Plug 'kshenoy/vim-signature'
+Plug 'airblade/vim-gitgutter'
 
-" Required:
-call neobundle#begin(expand('~/.vim/bundle/'))
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-commentary', { 'on': '<Plug>Commentary' }
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-dispatch'
 
-" Let NeoBundle manage NeoBundle
-" Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
+Plug 'justinmk/vim-sneak'
+Plug 'Lokaltog/vim-easymotion'
+Plug 'junegunn/vim-pseudocl'
+Plug 'junegunn/vim-oblique'
+Plug 'wincent/command-t', { 'do': 'sh -c \"cd ruby/command-t && ruby extconf.rb && make\"'}
+Plug 'rking/ag.vim', { 'on': 'Ag' }
 
-" My Bundles here:
-" Refer to |:NeoBundle-examples|.
-" Note: You don't set neobundle setting in .gvimrc!
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-easytags'
 
-NeoBundle 'szw/vim-ctrlspace'
-NeoBundle 'Raimondi/delimitMate'
-NeoBundle 'kshenoy/vim-signature'
-NeoBundle 'airblade/vim-gitgutter'
+Plug 'scrooloose/syntastic'
 
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tpope/vim-commentary'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'tpope/vim-repeat'
-NeoBundle 'tpope/vim-dispatch'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer' }
 
-NeoBundle 'justinmk/vim-sneak'
-NeoBundle 'Lokaltog/vim-easymotion'
-NeoBundle 'junegunn/vim-pseudocl'
-NeoBundle 'junegunn/vim-oblique'
-NeoBundle 'wincent/command-t', {
-    \ 'build': {
-    \   'mac': 'sh -c "cd ruby/command-t && ruby extconf.rb && make"'
-    \  }
-    \}
-NeoBundle 'rking/ag.vim'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
-NeoBundle 'xolox/vim-misc'
-NeoBundle 'xolox/vim-easytags'
+Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
+Plug 'klen/python-mode', { 'for': 'python' }
 
-NeoBundle 'scrooloose/syntastic'
+Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
+Plug 'mtscout6/vim-cjsx', { 'for': 'coffee' }
 
-NeoBundle 'Valloric/YouCompleteMe', {
-    \ 'build': {
-    \   'mac': './install.sh --clang-completer'
-    \  }
-    \}
+Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 
-NeoBundle 'SirVer/ultisnips'
-NeoBundle 'honza/vim-snippets'
+Plug 'chriskempson/base16-vim'
+Plug 'bling/vim-airline'
 
-NeoBundle 'jmcantrell/vim-virtualenv'
-NeoBundle 'klen/python-mode'
+call plug#end()
 
-NeoBundle 'kchmck/vim-coffee-script'
-
-NeoBundle 'chriskempson/base16-vim'
-
-call neobundle#end()
-
-" Required:
-filetype plugin indent on
-
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
-
-syntax on
 
 " Colorscheme {{{
 colorscheme base16-tomorrow
@@ -77,9 +49,12 @@ set background=dark
 " Highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
+" highlight SignColumn ctermbg=0
+
 " }}}
 
 " Basic options {{{
+set nocompatible
 set encoding=utf-8
 set autoindent
 set showmode
@@ -142,6 +117,11 @@ if exists('$TMUX')
 else
   let &t_SI = "\<Esc>]50;CursorShape=1\x7"
   let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
+
+if has("gui_running")
+    set guifont=Monaco:h12
+    set guioptions=
 endif
 " }}}
 
@@ -230,6 +210,14 @@ endif
 
 " }}}
 
+" Coffeescript {{{
+augroup ft_coffee
+    au!
+
+    au FileType coffee setlocal shiftwidth=2
+augroup end
+" }}}
+
 " Vim {{{
 augroup ft_vim
 	au!
@@ -280,4 +268,14 @@ let g:pymode_rope_completion = 0
 " ctrlspace {{{
 let g:ctrlspace_save_workspace_on_exit = 1
 let g:ctrlspace_load_last_workspace_on_start = 1
+" }}}
+
+" Airline {{{
+set laststatus=2
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+let g:airline_powerline_fonts=0
+let g:airline_theme='base16'
+let g:airline_section_z=''
+let g:airline_section_y=''
 " }}}
