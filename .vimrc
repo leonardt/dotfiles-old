@@ -1,6 +1,6 @@
 call plug#begin('~/.vim/plugged')
 
-Plug 'szw/vim-ctrlspace'
+Plug 'szw/vim-ctrlspace', { 'branch': 'store_layouts' }
 Plug 'Raimondi/delimitMate'
 Plug 'kshenoy/vim-signature'
 Plug 'airblade/vim-gitgutter'
@@ -37,13 +37,19 @@ Plug 'mtscout6/vim-cjsx', { 'for': 'coffee' }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 
 Plug 'chriskempson/base16-vim'
+Plug 'junegunn/seoul256.vim'
 Plug 'bling/vim-airline'
+
+Plug 'junegunn/goyo.vim',      { 'on': 'Goyo' }
+Plug 'junegunn/limelight.vim', { 'on': 'Limelight' }
 
 call plug#end()
 
 
 " Colorscheme {{{
-colorscheme base16-tomorrow
+" let g:seoul256_background = 235
+" colorscheme seoul256
+colorscheme base16-eighties
 set background=dark
 
 " Highlight VCS conflict markers
@@ -111,6 +117,8 @@ set smartcase
 
 set mouse=a
 
+set nostartofline
+
 if exists('$TMUX')
   let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
   let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
@@ -177,9 +185,8 @@ augroup END
 
 " Tabs, spaces, wrapping {{{
 
-set tabstop=8
-set shiftwidth=4
-set softtabstop=4
+set shiftwidth=2
+set softtabstop=2
 set expandtab
 set wrap
 set textwidth=80
@@ -268,6 +275,12 @@ let g:pymode_rope_completion = 0
 " ctrlspace {{{
 let g:ctrlspace_save_workspace_on_exit = 1
 let g:ctrlspace_load_last_workspace_on_start = 1
+nnoremap <Leader>s :CtrlSpaceSaveWorkspace<CR>
+
+hi CtrlSpaceSelected term=reverse ctermfg=187   guifg=#d7d7af ctermbg=23    guibg=#005f5f cterm=bold gui=bold
+hi CtrlSpaceNormal   term=NONE    ctermfg=244   guifg=#808080 ctermbg=232   guibg=#080808 cterm=NONE gui=NONE
+hi CtrlSpaceSearch   ctermfg=220  guifg=#ffd700 ctermbg=NONE  guibg=NONE    cterm=bold    gui=bold
+hi CtrlSpaceStatus   ctermfg=230  guifg=#ffffd7 ctermbg=234   guibg=#1c1c1c cterm=NONE    gui=NONE
 " }}}
 
 " Airline {{{
@@ -278,4 +291,35 @@ let g:airline_powerline_fonts=0
 let g:airline_theme='base16'
 let g:airline_section_z=''
 let g:airline_section_y=''
+" }}}
+
+" goyo.vim + limelight.vim {{{
+function! GoyoBefore()
+  if exists('$TMUX')
+    silent !tmux set status off
+  endif
+  set scrolloff=999
+  set noshowmode
+  set noshowcmd
+  Limelight
+endfunction
+
+function! GoyoAfter()
+  if exists('$TMUX')
+    silent !tmux set status on
+  endif
+  set scrolloff=5
+  set showmode
+  set showcmd
+  Limelight!
+endfunction
+
+let g:goyo_callbacks = [function('GoyoBefore'), function('GoyoAfter')]
+
+nnoremap <Leader>G :Goyo<CR>
+" }}}
+
+" vim-commentary {{{
+map  gc  <Plug>Commentary
+nmap  gcc  <Plug>Commentary
 " }}}

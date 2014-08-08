@@ -6,3 +6,5 @@ alias gps='git push'
 alias gco='git checkout'
 alias gc='git commit'
 alias ga='git add'
+
+alias rake='noglob rake'

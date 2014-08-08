@@ -43,3 +43,14 @@ export PATH="/usr/local/bin:$PATH"
 
 # Fix backspace in vi mode
 bindkey "^?" backward-delete-char
+
+export RISCV=$HOME/aspire/riscv/riscv
+export PATH=$PATH:$RISCV/bin
+
+# fd - cd to selected directory
+fd() {
+  local dir
+  dir=$(find ${1:-*} -path '*/\.*' -prune \
+                      -o -type d -print 2> /dev/null | fzf +m) &&
+                      cd "$dir"
+}
