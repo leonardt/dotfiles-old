@@ -1,6 +1,6 @@
 call plug#begin('~/.vim/plugged')
 
-Plug 'szw/vim-ctrlspace', { 'branch': 'store_layouts' }
+Plug 'szw/vim-ctrlspace'
 Plug 'Raimondi/delimitMate'
 Plug 'kshenoy/vim-signature'
 Plug 'airblade/vim-gitgutter'
@@ -17,6 +17,7 @@ Plug 'junegunn/vim-pseudocl'
 Plug 'junegunn/vim-oblique'
 Plug 'wincent/command-t', { 'do': 'sh -c \"cd ruby/command-t && ruby extconf.rb && make\"'}
 Plug 'rking/ag.vim', { 'on': 'Ag' }
+Plug 'junegunn/vim-easy-align'
 
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-easytags'
@@ -28,16 +29,22 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer' }
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
-Plug 'jmcantrell/vim-virtualenv', { 'for': 'python' }
-Plug 'klen/python-mode', { 'for': 'python' }
+Plug 'jmcantrell/vim-virtualenv' , { 'for': 'python' }
+Plug 'klen/python-mode'          , { 'for': 'python' }
 
-Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
-Plug 'mtscout6/vim-cjsx', { 'for': 'coffee' }
+Plug 'guns/vim-clojure-static'    , { 'for': 'clojure' }
+Plug 'tpope/vim-leiningen'        , { 'for': 'clojure' }
+Plug 'guns/vim-clojure-highlight' , { 'for': 'clojure' }
+Plug 'tpope/vim-fireplace'        , { 'for': 'clojure' }
+
+Plug 'kchmck/vim-coffee-script' , { 'for': 'coffee' }
+Plug 'mtscout6/vim-cjsx'        , { 'for': 'coffee' }
 
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 
 Plug 'chriskempson/base16-vim'
 Plug 'junegunn/seoul256.vim'
+Plug 'nanotech/jellybeans.vim'
 Plug 'bling/vim-airline'
 
 Plug 'junegunn/goyo.vim',      { 'on': 'Goyo' }
@@ -49,8 +56,10 @@ call plug#end()
 " Colorscheme {{{
 " let g:seoul256_background = 235
 " colorscheme seoul256
-colorscheme base16-eighties
+" colorscheme jellybeans
+colorscheme base16-ocean
 set background=dark
+" set background=light
 
 " Highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
@@ -274,6 +283,7 @@ let g:pymode_rope_completion = 0
 
 " ctrlspace {{{
 let g:ctrlspace_save_workspace_on_exit = 1
+let g:ctrlspace_project_root_markers = []
 let g:ctrlspace_load_last_workspace_on_start = 1
 nnoremap <Leader>s :CtrlSpaceSaveWorkspace<CR>
 
@@ -288,7 +298,7 @@ set laststatus=2
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:airline_powerline_fonts=0
-let g:airline_theme='base16'
+let g:airline_theme='jellybeans'
 let g:airline_section_z=''
 let g:airline_section_y=''
 " }}}
@@ -322,4 +332,12 @@ nnoremap <Leader>G :Goyo<CR>
 " vim-commentary {{{
 map  gc  <Plug>Commentary
 nmap  gcc  <Plug>Commentary
+" }}}
+
+" vim-easy-align {{{
+" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+vmap <Enter> <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. <Leader>aip)
+nmap <Leader>a <Plug>(EasyAlign)
 " }}}

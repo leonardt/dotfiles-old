@@ -16,6 +16,7 @@ antigen bundles <<EOBUNDLES
     sindresorhus/pure
     zsh-users/zsh-history-substring-search
     vi-mode
+    bobthecow/git-flow-completion
 EOBUNDLES
 
 antigen apply

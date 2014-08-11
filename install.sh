@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Clone submodules
+git submodule update --init --recursive
+
 # Link config files
 ln zsh/.zshrc ~/.zshrc
 ln .vimrc ~/.vimrc
