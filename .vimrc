@@ -2,8 +2,8 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'szw/vim-ctrlspace'
 Plug 'Raimondi/delimitMate'
-Plug 'kshenoy/vim-signature'
-Plug 'airblade/vim-gitgutter'
+" Plug 'kshenoy/vim-signature'
+" Plug 'airblade/vim-gitgutter'
 
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary', { 'on': '<Plug>Commentary' }
@@ -11,34 +11,44 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-dispatch'
 
-Plug 'justinmk/vim-sneak'
-Plug 'Lokaltog/vim-easymotion'
+Plug 'justinmk/vim-sneak', { 'on': ['<Plug>Sneak_s', '<Plug>Sneak_S'] }
+" Plug 'Lokaltog/vim-easymotion'
 Plug 'junegunn/vim-pseudocl'
 Plug 'junegunn/vim-oblique'
-Plug 'wincent/command-t', { 'do': 'sh -c \"cd ruby/command-t && ruby extconf.rb && make\"'}
-Plug 'rking/ag.vim', { 'on': 'Ag' }
-Plug 'junegunn/vim-easy-align'
+" Plug 'wincent/command-t', { 'do': 'sh -c \"cd ruby/command-t && ruby extconf.rb && make\"'}
+Plug 'rking/ag.vim'            , { 'on': 'Ag' }
+Plug 'junegunn/vim-easy-align' , { 'on': 'EasyAlign' }
 
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-easytags'
 
 Plug 'scrooloose/syntastic'
 
-Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer' }
+" Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer' }
+Plug 'Shougo/neocomplete.vim'
+Plug 'Shougo/vimproc.vim'   , { 'do' : 'make -f make_mac.mak' }
+Plug 'Shougo/unite.vim'
+Plug 'Shougo/unite-outline'
+Plug 'Shougo/neomru.vim'
+Plug 'Shougo/vimfiler.vim', { 'on' : 'VimFiler' }
 
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
-Plug 'jmcantrell/vim-virtualenv' , { 'for': 'python' }
-Plug 'klen/python-mode'          , { 'for': 'python' }
+" Python
+Plug 'davidhalter/jedi-vim'       , { 'for' : 'python' }
+Plug 'jmcantrell/vim-virtualenv'  , { 'for' : 'python', 'on' : 'VirtualEnvActivate' }
+Plug 'klen/python-mode'           , { 'for' : 'python' }
 
-Plug 'guns/vim-clojure-static'    , { 'for': 'clojure' }
-Plug 'tpope/vim-leiningen'        , { 'for': 'clojure' }
-Plug 'guns/vim-clojure-highlight' , { 'for': 'clojure' }
-Plug 'tpope/vim-fireplace'        , { 'for': 'clojure' }
+" Clojure
+Plug 'guns/vim-clojure-static'    , { 'for' : 'clojure' }
+Plug 'tpope/vim-leiningen'        , { 'for' : 'clojure' }
+Plug 'guns/vim-clojure-highlight' , { 'for' : 'clojure' }
+Plug 'tpope/vim-fireplace'        , { 'for' : 'clojure' }
 
-Plug 'kchmck/vim-coffee-script' , { 'for': 'coffee' }
-Plug 'mtscout6/vim-cjsx'        , { 'for': 'coffee' }
+" Coffeescript 
+Plug 'kchmck/vim-coffee-script'   , { 'for' : 'coffee' }
+Plug 'mtscout6/vim-cjsx'          , { 'for' : 'coffee' }
 
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 
@@ -64,7 +74,14 @@ set background=dark
 " Highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
-" highlight SignColumn ctermbg=0
+" Jellybeans gutter color
+" highlight SignColumn ctermbg=233
+" highlight Folded ctermbg=233
+
+" Base16 Ocean
+hi SignColumn ctermbg=0
+hi Folded ctermbg=0
+set fillchars=fold:\ 
 
 " }}}
 
@@ -200,7 +217,7 @@ set expandtab
 set wrap
 set textwidth=80
 set formatoptions=qrn1j
-set colorcolumn=+1
+" set colorcolumn=+1
 
 " }}}
 
@@ -254,8 +271,8 @@ let g:easytags_async=1
 " }}}
 
 " YouCompleteMe {{{
-let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_seed_identifiers_with_syntax = 1
+" let g:ycm_collect_identifiers_from_tags_files = 1
+" let g:ycm_seed_identifiers_with_syntax = 1
 " }}}
 
 " UltiSnips {{{
@@ -282,9 +299,9 @@ let g:pymode_rope_completion = 0
 " }}}
 
 " ctrlspace {{{
-let g:ctrlspace_save_workspace_on_exit = 1
+" let g:ctrlspace_save_workspace_on_exit = 1
 let g:ctrlspace_project_root_markers = []
-let g:ctrlspace_load_last_workspace_on_start = 1
+" let g:ctrlspace_load_last_workspace_on_start = 1
 nnoremap <Leader>s :CtrlSpaceSaveWorkspace<CR>
 
 hi CtrlSpaceSelected term=reverse ctermfg=187   guifg=#d7d7af ctermbg=23    guibg=#005f5f cterm=bold gui=bold
@@ -298,7 +315,7 @@ set laststatus=2
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:airline_powerline_fonts=0
-let g:airline_theme='jellybeans'
+let g:airline_theme='base16'
 let g:airline_section_z=''
 let g:airline_section_y=''
 " }}}
@@ -340,4 +357,123 @@ vmap <Enter> <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. <Leader>aip)
 nmap <Leader>a <Plug>(EasyAlign)
+" }}}
+
+" syntastic {{{
+let g:syntastic_html_checkers = []
+" }}}
+
+" neocomplete {{{
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+
+" Define dictionary.
+let g:neocomplete#sources#dictionary#dictionaries = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ 'scheme' : $HOME.'/.gosh_completions'
+        \ }
+
+" Define keyword.
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return neocomplete#close_popup() . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplete#close_popup()
+inoremap <expr><C-e>  neocomplete#cancel_popup()
+
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+" autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" Enable heavy omni completion.
+" if !exists('g:neocomplete#sources#omni#input_patterns')
+"   let g:neocomplete#sources#omni#input_patterns = {}
+" endif
+" }}}
+
+" unite {{{
+
+" Use fuzzy matching
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+
+call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
+      \ 'ignore_pattern', join([
+      \ '\.git/',
+      \ 'git5/.*/review/',
+      \ 'google/obj/',
+      \ 'tmp/',
+      \ '.sass-cache',
+      \ 'node_modules/',
+      \ 'bower_components/',
+      \ 'dist/',
+      \ '.git5_specs/',
+      \ 'build/',
+      \ '.pyc',
+      \ '.ropeproject/',
+      \ ], '\|'))
+
+nnoremap [unite] <Nop>
+nmap <Space> [unite]
+nnoremap <silent> [unite]<Space> :<C-u>Unite -buffer-name=files -no-split -start-insert file_rec/async:!<CR>
+nnoremap <silent> [unite]b :<C-u>Unite -buffer-name=buffers -no-split buffer -quick-match<CR>
+nnoremap <silent> [unite]o :<C-u>Unite -buffer-name=outline outline<CR>
+
+let g:unite_source_history_yank_enable = 1
+nnoremap <silent> [unite]y :<C-u>Unite -buffer-name=yanks history/yank<CR>
+
+" Quick grep from cwd
+nnoremap <silent> [unite]g :<C-u>Unite -buffer-name=grep grep:.<CR>
+
+" Quick MRU search
+nnoremap <silent> [unite]m :<C-u>Unite -buffer-name=mru -no-split file_mru<CR>
+
+let g:unite_source_rec_async_command = 'ag --follow --nocolor --nogroup --hidden -g ""'
+" }}}
+
+" vimfiler {{{
+let g:vimfiler_as_default_explorer = 1
+nnoremap <Leader>a :VimFiler<CR>
+" }}}
+
+" vim-sneak {{{
+nmap s <Plug>Sneak_s
+nmap S <Plug>Sneak_S
+xmap s <Plug>Sneak_s
+xmap S <Plug>Sneak_S
+omap s <Plug>Sneak_s
+omap S <Plug>Sneak_S
+" }}}
+
+" jedi-vim {{{
+let g:jedi#goto_definitions_command = "<leader>gd"
+" let g:jedi#auto_vim_configuration = 0
+let g:jedi#completions_enabled=0
+let g:jedi#popup_select_first = 0
 " }}}
