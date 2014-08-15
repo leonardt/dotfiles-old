@@ -12,10 +12,10 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-dispatch'
 
 Plug 'justinmk/vim-sneak', { 'on': ['<Plug>Sneak_s', '<Plug>Sneak_S'] }
-" Plug 'Lokaltog/vim-easymotion'
+Plug 'Lokaltog/vim-easymotion'
 Plug 'junegunn/vim-pseudocl'
 Plug 'junegunn/vim-oblique'
-" Plug 'wincent/command-t', { 'do': 'sh -c \"cd ruby/command-t && ruby extconf.rb && make\"'}
+Plug 'wincent/command-t', { 'do': 'sh -c \"cd ruby/command-t && ruby extconf.rb && make\"'}
 Plug 'rking/ag.vim'            , { 'on': 'Ag' }
 Plug 'junegunn/vim-easy-align' , { 'on': 'EasyAlign' }
 
@@ -24,21 +24,23 @@ Plug 'xolox/vim-easytags'
 
 Plug 'scrooloose/syntastic'
 
-" Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer' }
-Plug 'Shougo/neocomplete.vim'
-Plug 'Shougo/vimproc.vim'   , { 'do' : 'make -f make_mac.mak' }
-Plug 'Shougo/unite.vim'
-Plug 'Shougo/unite-outline'
-Plug 'Shougo/neomru.vim'
-Plug 'Shougo/vimfiler.vim', { 'on' : 'VimFiler' }
+" Plug 'ervandew/supertab'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer' }
+" Plug 'Shougo/neocomplete.vim'
+" Plug 'Shougo/vimproc.vim'   , { 'do' : 'make -f make_mac.mak' }
+" Plug 'Shougo/unite.vim'
+" Plug 'Shougo/unite-outline'
+" Plug 'Shougo/neomru.vim'
+" Plug 'Shougo/vimfiler.vim', { 'on' : 'VimFiler' }
 
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 " Python
-Plug 'davidhalter/jedi-vim'       , { 'for' : 'python' }
+" Plug 'davidhalter/jedi-vim'       , { 'for' : 'python' }
 Plug 'jmcantrell/vim-virtualenv'  , { 'for' : 'python', 'on' : 'VirtualEnvActivate' }
 Plug 'klen/python-mode'           , { 'for' : 'python' }
+" Plug 'mgedmin/python-imports.vim' , { 'for' : 'python' }
 
 " Clojure
 Plug 'guns/vim-clojure-static'    , { 'for' : 'clojure' }
@@ -56,6 +58,7 @@ Plug 'chriskempson/base16-vim'
 Plug 'junegunn/seoul256.vim'
 Plug 'nanotech/jellybeans.vim'
 Plug 'bling/vim-airline'
+Plug 'altercation/vim-colors-solarized'
 
 Plug 'junegunn/goyo.vim',      { 'on': 'Goyo' }
 Plug 'junegunn/limelight.vim', { 'on': 'Limelight' }
@@ -67,7 +70,7 @@ call plug#end()
 " let g:seoul256_background = 235
 " colorscheme seoul256
 " colorscheme jellybeans
-colorscheme base16-ocean
+colorscheme base16-tomorrow
 set background=dark
 " set background=light
 
@@ -79,8 +82,8 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 " highlight Folded ctermbg=233
 
 " Base16 Ocean
-hi SignColumn ctermbg=0
-hi Folded ctermbg=0
+" hi SignColumn ctermbg=0
+" hi Folded ctermbg=0
 set fillchars=fold:\ 
 
 " }}}
@@ -134,7 +137,7 @@ au FocusLost * :silent! wall
 au VimResized * :wincmd =
 
 " Leader
-let mapleader = ","
+let mapleader = "\<Space>"
 let maplocalleader = "\\"
 
 set incsearch
@@ -156,6 +159,14 @@ endif
 if has("gui_running")
     set guifont=Monaco:h12
     set guioptions=
+endif
+
+" Writes to the unnamed register also writes to the * and + registers. This
+" makes it easy to interact with the system clipboard
+if has ('unnamedplus')
+  set clipboard=unnamedplus
+else
+  set clipboard=unnamed
 endif
 " }}}
 
@@ -302,7 +313,7 @@ let g:pymode_rope_completion = 0
 " let g:ctrlspace_save_workspace_on_exit = 1
 let g:ctrlspace_project_root_markers = []
 " let g:ctrlspace_load_last_workspace_on_start = 1
-nnoremap <Leader>s :CtrlSpaceSaveWorkspace<CR>
+" nnoremap <Leader>s :CtrlSpaceSaveWorkspace<CR>
 
 hi CtrlSpaceSelected term=reverse ctermfg=187   guifg=#d7d7af ctermbg=23    guibg=#005f5f cterm=bold gui=bold
 hi CtrlSpaceNormal   term=NONE    ctermfg=244   guifg=#808080 ctermbg=232   guibg=#080808 cterm=NONE gui=NONE
@@ -315,7 +326,7 @@ set laststatus=2
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:airline_powerline_fonts=0
-let g:airline_theme='base16'
+let g:airline_theme='lucius'
 let g:airline_section_z=''
 let g:airline_section_y=''
 " }}}
@@ -364,53 +375,53 @@ let g:syntastic_html_checkers = []
 " }}}
 
 " neocomplete {{{
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-
-" Define dictionary.
-let g:neocomplete#sources#dictionary#dictionaries = {
-    \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions'
-        \ }
-
-" Define keyword.
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-" Plugin key-mappings.
-inoremap <expr><C-g>     neocomplete#undo_completion()
-inoremap <expr><C-l>     neocomplete#complete_common_string()
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return neocomplete#close_popup() . "\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-endfunction
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplete#close_popup()
-inoremap <expr><C-e>  neocomplete#cancel_popup()
-
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-" autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+" " Use neocomplete.
+" let g:neocomplete#enable_at_startup = 1
+" " Use smartcase.
+" let g:neocomplete#enable_smart_case = 1
+" " Set minimum syntax keyword length.
+" let g:neocomplete#sources#syntax#min_keyword_length = 3
+" let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+" 
+" " Define dictionary.
+" let g:neocomplete#sources#dictionary#dictionaries = {
+"     \ 'default' : '',
+"     \ 'vimshell' : $HOME.'/.vimshell_hist',
+"     \ 'scheme' : $HOME.'/.gosh_completions'
+"         \ }
+" 
+" " Define keyword.
+" if !exists('g:neocomplete#keyword_patterns')
+"     let g:neocomplete#keyword_patterns = {}
+" endif
+" let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+" 
+" " Plugin key-mappings.
+" inoremap <expr><C-g>     neocomplete#undo_completion()
+" inoremap <expr><C-l>     neocomplete#complete_common_string()
+" 
+" " Recommended key-mappings.
+" " <CR>: close popup and save indent.
+" inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+" function! s:my_cr_function()
+"   return neocomplete#close_popup() . "\<CR>"
+"   " For no inserting <CR> key.
+"   "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+" endfunction
+" " <TAB>: completion.
+" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" " <C-h>, <BS>: close popup and delete backword char.
+" inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+" inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+" inoremap <expr><C-y>  neocomplete#close_popup()
+" inoremap <expr><C-e>  neocomplete#cancel_popup()
+" 
+" " Enable omni completion.
+" autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+" autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+" " autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+" autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " Enable heavy omni completion.
 " if !exists('g:neocomplete#sources#omni#input_patterns')
@@ -421,45 +432,45 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 " unite {{{
 
 " Use fuzzy matching
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
+" call unite#filters#matcher_default#use(['matcher_fuzzy'])
 
-call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
-      \ 'ignore_pattern', join([
-      \ '\.git/',
-      \ 'git5/.*/review/',
-      \ 'google/obj/',
-      \ 'tmp/',
-      \ '.sass-cache',
-      \ 'node_modules/',
-      \ 'bower_components/',
-      \ 'dist/',
-      \ '.git5_specs/',
-      \ 'build/',
-      \ '.pyc',
-      \ '.ropeproject/',
-      \ ], '\|'))
+" call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
+"       \ 'ignore_pattern', join([
+"       \ '\.git/',
+"       \ 'git5/.*/review/',
+"       \ 'google/obj/',
+"       \ 'tmp/',
+"       \ '.sass-cache',
+"       \ 'node_modules/',
+"       \ 'bower_components/',
+"       \ 'dist/',
+"       \ '.git5_specs/',
+"       \ 'build/',
+"       \ '.pyc',
+"       \ '.ropeproject/',
+"       \ ], '\|'))
 
-nnoremap [unite] <Nop>
-nmap <Space> [unite]
-nnoremap <silent> [unite]<Space> :<C-u>Unite -buffer-name=files -no-split -start-insert file_rec/async:!<CR>
-nnoremap <silent> [unite]b :<C-u>Unite -buffer-name=buffers -no-split buffer -quick-match<CR>
-nnoremap <silent> [unite]o :<C-u>Unite -buffer-name=outline outline<CR>
+" nnoremap [unite] <Nop>
+" nmap <Space> [unite]
+" nnoremap <silent> [unite]r :<C-u>Unite -buffer-name=files -no-split -start-insert file_rec/async:!<CR>
+" nnoremap <silent> [unite]b :<C-u>Unite -buffer-name=buffers -no-split buffer -quick-match<CR>
+" nnoremap <silent> [unite]o :<C-u>Unite -buffer-name=outline outline<CR>
 
-let g:unite_source_history_yank_enable = 1
-nnoremap <silent> [unite]y :<C-u>Unite -buffer-name=yanks history/yank<CR>
+" let g:unite_source_history_yank_enable = 1
+" nnoremap <silent> [unite]y :<C-u>Unite -buffer-name=yanks history/yank<CR>
 
-" Quick grep from cwd
-nnoremap <silent> [unite]g :<C-u>Unite -buffer-name=grep grep:.<CR>
+" " Quick grep from cwd
+" nnoremap <silent> [unite]g :<C-u>Unite -buffer-name=grep grep:.<CR>
 
-" Quick MRU search
-nnoremap <silent> [unite]m :<C-u>Unite -buffer-name=mru -no-split file_mru<CR>
+" " Quick MRU search
+" nnoremap <silent> [unite]m :<C-u>Unite -buffer-name=mru -no-split file_mru<CR>
 
-let g:unite_source_rec_async_command = 'ag --follow --nocolor --nogroup --hidden -g ""'
+" let g:unite_source_rec_async_command = 'ag --follow --nocolor --nogroup --hidden -g ""'
 " }}}
 
 " vimfiler {{{
-let g:vimfiler_as_default_explorer = 1
-nnoremap <Leader>a :VimFiler<CR>
+" let g:vimfiler_as_default_explorer = 1
+" nnoremap <Leader>a :VimFiler<CR>
 " }}}
 
 " vim-sneak {{{
@@ -471,9 +482,21 @@ omap s <Plug>Sneak_s
 omap S <Plug>Sneak_S
 " }}}
 
-" jedi-vim {{{
-let g:jedi#goto_definitions_command = "<leader>gd"
+" jedi-vim 
+" let g:jedi#goto_definitions_command = "<leader>gd"
 " let g:jedi#auto_vim_configuration = 0
-let g:jedi#completions_enabled=0
-let g:jedi#popup_select_first = 0
+" let g:jedi#completions_enabled=0
+" let g:jedi#popup_select_first = 0
+" 
+
+" delimitmate {{{
+let delimitMate_expand_cr = 1
+" }}}
+
+" EasyMotion {{{
+map <Leader> <Plug>(easymotion-prefix)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+nmap <Leader>s <Plug>(easymotion-s2)
+let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 " }}}

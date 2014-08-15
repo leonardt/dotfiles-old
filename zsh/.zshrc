@@ -2,6 +2,8 @@ source $HOME/dotfiles/zsh/antigen/antigen.zsh
 
 antigen use oh-my-zsh
 
+    # virtualenvwrapper
+    # vi-mode
 antigen bundles <<EOBUNDLES
     git
     extract
@@ -9,13 +11,11 @@ antigen bundles <<EOBUNDLES
     pip
     python
     github
-    virtualenvwrapper
     command-not-found
     history
     zsh-users/zsh-syntax-highlighting
     sindresorhus/pure
     zsh-users/zsh-history-substring-search
-    vi-mode
     bobthecow/git-flow-completion
 EOBUNDLES
 
@@ -38,15 +38,26 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 
 source $HOME/dotfiles/zsh/.zsh_aliases
 
-export EDITOR='mvim -v'
+export EDITOR='vim'
 
 export PATH="/usr/local/bin:$PATH"
 
 # Fix backspace in vi mode
-bindkey "^?" backward-delete-char
+# bindkey "^?" backward-delete-char
 
 export RISCV=$HOME/aspire/riscv/riscv
 export PATH=$PATH:$RISCV/bin
+
+export FZF_DEFAULT_COMMAND='ag -l -g ""'
+
+# fe [FUZZY PATTERN] - Open the selected file with the default editor
+#   - Bypass fuzzy finder if there's only one match (--select-1)
+#   - Exit if there's no match (--exit-0)
+fe() {
+  local file
+  file=$(fzf --query="$1" --select-1 --exit-0)
+  [ -n "$file" ] && ${EDITOR:-vim} "$file"
+}
 
 # fd - cd to selected directory
 fd() {
@@ -55,3 +66,9 @@ fd() {
                       -o -type d -print 2> /dev/null | fzf +m) &&
                       cd "$dir"
 }
+
+# bindkey '^R' history-incremental-search-backward
+source ~/.fzf.zsh
+
+# added by travis gem
+[ -f /Users/leonardtruong/.travis/travis.sh ] && source /Users/leonardtruong/.travis/travis.sh

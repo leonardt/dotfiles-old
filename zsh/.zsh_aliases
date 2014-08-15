@@ -1,10 +1,13 @@
-alias vim='mvim -v'
-
 # git
 alias gpl='git pull'
 alias gps='git push'
+alias gpa='git push --all'
+alias gpt='git push --tags'
 alias gco='git checkout'
 alias gc='git commit'
 alias ga='git add'
+
+# git-flow
+alias gf='git flow'
 
 alias rake='noglob rake'
