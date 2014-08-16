@@ -60,6 +60,8 @@ Plug 'nanotech/jellybeans.vim'
 Plug 'bling/vim-airline'
 Plug 'altercation/vim-colors-solarized'
 
+Plug 'christoomey/vim-tmux-navigator'
+
 Plug 'junegunn/goyo.vim',      { 'on': 'Goyo' }
 Plug 'junegunn/limelight.vim', { 'on': 'Limelight' }
 
@@ -67,10 +69,10 @@ call plug#end()
 
 
 " Colorscheme {{{
-" let g:seoul256_background = 235
-" colorscheme seoul256
+let g:seoul256_background = 235
+colorscheme seoul256
 " colorscheme jellybeans
-colorscheme base16-tomorrow
+" colorscheme base16-tomorrow
 set background=dark
 " set background=light
 
@@ -282,8 +284,8 @@ let g:easytags_async=1
 " }}}
 
 " YouCompleteMe {{{
-" let g:ycm_collect_identifiers_from_tags_files = 1
-" let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_seed_identifiers_with_syntax = 1
 " }}}
 
 " UltiSnips {{{
