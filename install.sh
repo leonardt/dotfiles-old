@@ -8,7 +8,6 @@ ln zsh/.zshrc ~/.zshrc
 ln .vimrc ~/.vimrc
 ln .tmux.conf ~/.tmux.conf
 ln .amethyst ~/.amethyst
-cp -r launchbar/launchbar-github/launchbar-github.lbaction ~/Library/Application\ Support/LaunchBar/Actions/
 
 # Install vim-plug
 mkdir -p ~/.vim/autoload
