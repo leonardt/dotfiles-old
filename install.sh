@@ -4,11 +4,11 @@
 git submodule update --init --recursive
 
 # Link config files
-ln zsh/.zshrc ~/.zshrc
-ln .vimrc ~/.vimrc
-ln .tmux.conf ~/.tmux.conf
-ln .tmux-osx.conf ~/.tmux-osx.conf
-ln .amethyst ~/.amethyst
+ln -s zsh/.zshrc ~/.zshrc
+ln -s .vimrc ~/.vimrc
+ln -s .tmux.conf ~/.tmux.conf
+ln -s .tmux-osx.conf ~/.tmux-osx.conf
+ln -s .amethyst ~/.amethyst
 
 # Install vim-plug
 mkdir -p ~/.vim/autoload
