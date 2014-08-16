@@ -7,6 +7,7 @@ git submodule update --init --recursive
 ln zsh/.zshrc ~/.zshrc
 ln .vimrc ~/.vimrc
 ln .tmux.conf ~/.tmux.conf
+ln .tmux-osx.conf ~/.tmux-osx.conf
 ln .amethyst ~/.amethyst
 
 # Install vim-plug
