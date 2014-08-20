@@ -69,11 +69,13 @@ call plug#end()
 
 
 " Colorscheme {{{
-let g:seoul256_background = 235
-colorscheme seoul256
+" let g:seoul256_background = 235
+" let g:seoul256_background = 233
+" colorscheme seoul256
 " colorscheme jellybeans
-" colorscheme base16-tomorrow
+colorscheme base16-tomorrow
 set background=dark
+hi Normal ctermbg=None
 " set background=light
 
 " Highlight VCS conflict markers
@@ -149,6 +151,7 @@ set smartcase
 set mouse=a
 
 set nostartofline
+set showtabline=0
 
 if exists('$TMUX')
   let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
@@ -277,6 +280,8 @@ nnoremap <silent> <leader>b :CommandTMRU<CR>
 nnoremap <silent> <leader>f :CommandTTag<CR>
 nnoremap <silent> <c-p> :CommandT<CR>
 let g:CommandTFileScanner="find"
+let g:CommandTMatchWindowReverse=1
+let g:CommandTWildIgnore=&wildignore . ",**/bower_components/*" . ",**/node_modules/*"
 " }}}
 
 " EasyTags {{{
@@ -286,6 +291,8 @@ let g:easytags_async=1
 " YouCompleteMe {{{
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_add_preview_to_completeopt = 1
+let g:ycm_autoclose_preview_window_after_insertion = 1
 " }}}
 
 " UltiSnips {{{
@@ -313,9 +320,12 @@ let g:pymode_rope_completion = 0
 
 " ctrlspace {{{
 " let g:ctrlspace_save_workspace_on_exit = 1
-let g:ctrlspace_project_root_markers = []
+" let g:ctrlspace_project_root_markers = []
 " let g:ctrlspace_load_last_workspace_on_start = 1
 " nnoremap <Leader>s :CtrlSpaceSaveWorkspace<CR>
+if executable("ag")
+  let g:ctrlspace_glob_command = 'ag -l --nocolor -g ""'
+endif
 
 hi CtrlSpaceSelected term=reverse ctermfg=187   guifg=#d7d7af ctermbg=23    guibg=#005f5f cterm=bold gui=bold
 hi CtrlSpaceNormal   term=NONE    ctermfg=244   guifg=#808080 ctermbg=232   guibg=#080808 cterm=NONE gui=NONE
@@ -328,7 +338,7 @@ set laststatus=2
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:airline_powerline_fonts=0
-let g:airline_theme='lucius'
+let g:airline_theme='base16'
 let g:airline_section_z=''
 let g:airline_section_y=''
 " }}}
