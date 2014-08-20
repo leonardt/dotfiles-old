@@ -7,3 +7,6 @@
 [submodule "iterm/Jellybeans.itermcolors"]
 	path = iterm/Jellybeans.itermcolors
 	url = https://github.com/qtpi/Jellybeans.itermcolors
+[submodule "iterm/6362811"]
+	path = iterm/6362811
+	url = https://gist.github.com/luan/6362811

@@ -59,6 +59,7 @@ Plug 'junegunn/seoul256.vim'
 Plug 'nanotech/jellybeans.vim'
 Plug 'bling/vim-airline'
 Plug 'altercation/vim-colors-solarized'
+Plug 'w0ng/vim-hybrid'
 
 Plug 'christoomey/vim-tmux-navigator'
 
@@ -73,9 +74,10 @@ call plug#end()
 " let g:seoul256_background = 233
 " colorscheme seoul256
 " colorscheme jellybeans
-colorscheme base16-tomorrow
-set background=dark
-hi Normal ctermbg=None
+" colorscheme base16-tomorrow
+let g:hybrid_use_iTerm_colors = 1
+colorscheme hybrid
+" set background=dark
 " set background=light
 
 " Highlight VCS conflict markers
