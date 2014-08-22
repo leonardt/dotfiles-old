@@ -2,8 +2,6 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'szw/vim-ctrlspace'
 Plug 'Raimondi/delimitMate'
-" Plug 'kshenoy/vim-signature'
-" Plug 'airblade/vim-gitgutter'
 
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary', { 'on': '<Plug>Commentary' }
@@ -21,26 +19,18 @@ Plug 'junegunn/vim-easy-align' , { 'on': 'EasyAlign' }
 
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-easytags'
+Plug 'majutsushi/tagbar'
 
 Plug 'scrooloose/syntastic'
 
-" Plug 'ervandew/supertab'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer' }
-" Plug 'Shougo/neocomplete.vim'
-" Plug 'Shougo/vimproc.vim'   , { 'do' : 'make -f make_mac.mak' }
-" Plug 'Shougo/unite.vim'
-" Plug 'Shougo/unite-outline'
-" Plug 'Shougo/neomru.vim'
-" Plug 'Shougo/vimfiler.vim', { 'on' : 'VimFiler' }
 
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 " Python
-" Plug 'davidhalter/jedi-vim'       , { 'for' : 'python' }
 Plug 'jmcantrell/vim-virtualenv'  , { 'for' : 'python', 'on' : 'VirtualEnvActivate' }
 Plug 'klen/python-mode'           , { 'for' : 'python' }
-" Plug 'mgedmin/python-imports.vim' , { 'for' : 'python' }
 
 " Clojure
 Plug 'guns/vim-clojure-static'    , { 'for' : 'clojure' }
@@ -66,6 +56,8 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'junegunn/goyo.vim',      { 'on': 'Goyo' }
 Plug 'junegunn/limelight.vim', { 'on': 'Limelight' }
 
+Plug 'benmills/vimux'
+
 call plug#end()
 
 
@@ -75,9 +67,13 @@ call plug#end()
 " colorscheme seoul256
 " colorscheme jellybeans
 " colorscheme base16-tomorrow
-let g:hybrid_use_iTerm_colors = 1
-colorscheme hybrid
-" set background=dark
+if !has("gui_running")
+  let g:hybrid_use_iTerm_colors = 1
+endif
+" colorscheme hybrid
+" colorscheme solarized
+colorscheme base16-solarized
+set background=dark
 " set background=light
 
 " Highlight VCS conflict markers
@@ -340,9 +336,9 @@ set laststatus=2
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:airline_powerline_fonts=0
-let g:airline_theme='base16'
-let g:airline_section_z=''
-let g:airline_section_y=''
+let g:airline_theme='tomorrow'
+" let g:airline_section_z=''
+" let g:airline_section_y=''
 " }}}
 
 " goyo.vim + limelight.vim {{{
@@ -513,4 +509,28 @@ map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 nmap <Leader>s <Plug>(easymotion-s2)
 let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
+" }}}
+
+" vimux {{{
+" Prompt for a command to run
+map <Leader>vp :VimuxPromptCommand<CR>
+
+" Run last command executed by VimuxRunCommand
+map <Leader>vl :VimuxRunLastCommand<CR>
+
+" Inspect runner pane
+map <Leader>vi :VimuxInspectRunner<CR>
+
+" Close vim tmux runner opened by VimuxRunCommand
+map <Leader>vq :VimuxCloseRunner<CR>
+
+" Interrupt any command running in the runner pane
+map <Leader>vx :VimuxInterruptRunner<CR>
+
+" Zoom the runner pane (use <bind-key> z to restore runner pane)
+map <Leader>vz :call VimuxZoomRunner()<CR>
+" }}}
+
+" tagbar {{{
+nnoremap <silent> <Leader>a :TagbarToggle<CR>
 " }}}
