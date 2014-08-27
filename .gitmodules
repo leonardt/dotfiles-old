@@ -10,3 +10,6 @@
 [submodule "iterm/6362811"]
 	path = iterm/6362811
 	url = https://gist.github.com/luan/6362811
+[submodule "iterm/iTerm2-Color-Schemes"]
+	path = iterm/iTerm2-Color-Schemes
+	url = https://github.com/mbadolato/iTerm2-Color-Schemes

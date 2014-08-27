@@ -9,6 +9,7 @@ ln -s `pwd`/.vimrc ~/.vimrc
 ln -s `pwd`/.tmux.conf ~/.tmux.conf
 ln -s `pwd`/.tmux-osx.conf ~/.tmux-osx.conf
 ln -s `pwd`/.amethyst ~/.amethyst
+ln -s `pwd`/.emacs.d ~/.emacs.d
 
 # Install vim-plug
 mkdir -p ~/.vim/autoload

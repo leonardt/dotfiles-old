@@ -17,6 +17,8 @@ Plug 'wincent/command-t', { 'do': 'sh -c \"cd ruby/command-t && ruby extconf.rb 
 Plug 'rking/ag.vim'            , { 'on': 'Ag' }
 Plug 'junegunn/vim-easy-align' , { 'on': 'EasyAlign' }
 
+Plug 'wellle/targets.vim'
+
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-easytags'
 Plug 'majutsushi/tagbar'
@@ -58,6 +60,9 @@ Plug 'junegunn/limelight.vim', { 'on': 'Limelight' }
 
 Plug 'benmills/vimux'
 
+" Plug 'LaTeX-Box-Team/LaTeX-Box'
+Plug 'lervag/vim-latex'
+
 call plug#end()
 
 
@@ -69,10 +74,11 @@ call plug#end()
 " colorscheme base16-tomorrow
 if !has("gui_running")
   let g:hybrid_use_iTerm_colors = 1
+  let g:solarized_termcolors=16
 endif
 " colorscheme hybrid
-" colorscheme solarized
-colorscheme base16-solarized
+colorscheme solarized
+" colorscheme base16-solarized
 set background=dark
 " set background=light
 
@@ -325,10 +331,10 @@ if executable("ag")
   let g:ctrlspace_glob_command = 'ag -l --nocolor -g ""'
 endif
 
-hi CtrlSpaceSelected term=reverse ctermfg=187   guifg=#d7d7af ctermbg=23    guibg=#005f5f cterm=bold gui=bold
-hi CtrlSpaceNormal   term=NONE    ctermfg=244   guifg=#808080 ctermbg=232   guibg=#080808 cterm=NONE gui=NONE
-hi CtrlSpaceSearch   ctermfg=220  guifg=#ffd700 ctermbg=NONE  guibg=NONE    cterm=bold    gui=bold
-hi CtrlSpaceStatus   ctermfg=230  guifg=#ffffd7 ctermbg=234   guibg=#1c1c1c cterm=NONE    gui=NONE
+" hi CtrlSpaceSelected term=reverse ctermfg=187   guifg=#d7d7af ctermbg=23    guibg=#005f5f cterm=bold gui=bold
+" hi CtrlSpaceNormal   term=NONE    ctermfg=244   guifg=#808080 ctermbg=232   guibg=#080808 cterm=NONE gui=NONE
+" hi CtrlSpaceSearch   ctermfg=220  guifg=#ffd700 ctermbg=NONE  guibg=NONE    cterm=bold    gui=bold
+" hi CtrlSpaceStatus   ctermfg=230  guifg=#ffffd7 ctermbg=234   guibg=#1c1c1c cterm=NONE    gui=NONE
 " }}}
 
 " Airline {{{
@@ -533,4 +539,10 @@ map <Leader>vz :call VimuxZoomRunner()<CR>
 
 " tagbar {{{
 nnoremap <silent> <Leader>a :TagbarToggle<CR>
+" }}}
+
+" latex-box {{{
+let g:LatexBox_latexmk_async=1
+let g:LatexBox_latexmk_preview_continuously=1
+let g:LatexBox_quickfix=2
 " }}}
