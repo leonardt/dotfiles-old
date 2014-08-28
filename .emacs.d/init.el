@@ -1,91 +1,106 @@
-(require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
-(when (< emacs-major-version 24)
-  ;; For important compatibility libraries like cl-lib
-  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
-(package-initialize)
+(defgroup dotemacs nil
+  "Custom configuration for dotemacs."
+  :group 'local)
 
-(electric-indent-mode +1)
+(defcustom dotemacs-cache-directory (concat user-emacs-directory ".cache/")
+  "The storage location for various persistent files."
+  :group 'dotemacs)
+
+(when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+(unless (display-graphic-p) (menu-bar-mode -1))
+
+(add-to-list 'load-path (concat user-emacs-directory "config"))
+(add-to-list 'load-path (concat user-emacs-directory "lisp"))
+
+(require 'init-packages)
+
+(if (fboundp 'with-eval-after-load)
+    (defmacro after (feature &rest body)
+      "After FEATURE is loaded, evaluate BODY."
+      (declare (indent defun))
+      `(with-eval-after-load ,feature ,@body))
+  (defmacro after (feature &rest body)
+    "After FEATURE is loaded, evaluate BODY."
+    (declare (indent defun))
+    `(eval-after-load ,feature
+       '(progn ,@body))))
+
+(defcustom dotemacs-modules
+  '(init-core
+    init-evil
+    init-helm
+    init-themes
+    init-nose
+    ; init-pymacs
+    init-bindings)
+  "Set of modules enabled in dotemacs."
+  :group 'dotemacs)
+
+(dolist (module dotemacs-modules)
+  (require module))
 
 ;; projectile
 (projectile-global-mode t)
 
-; evil mode
-(evil-mode 1)
-(global-evil-leader-mode)
-(global-evil-surround-mode 1)
-(evilnc-default-hotkeys)
-(global-evil-matchit-mode 1)
-
-;; fix conflict with electric-indent-mode in 24.4
-(define-key evil-insert-state-map [remap newline] 'newline)
-(define-key evil-insert-state-map [remap newline-and-indent] 'newline-and-indent)
-
-(define-key evil-normal-state-map (kbd "C-p") 'projectile-find-file)
-
-(define-key evil-visual-state-map (kbd "SPC SPC") 'smex)
-(define-key evil-normal-state-map (kbd "SPC SPC") 'smex)
-
-(evil-leader/set-leader "<SPC>")
-(evil-leader/set-key
-  "f" 'find-file
-  "g s" 'magit-status
-  "g b" 'magit-blame-mode
-  "g c" 'magit-commit
-  "g l" 'magit-log)
-
-(tool-bar-mode -1)
-(menu-bar-mode -1)
-(scroll-bar-mode -1)
-
-;; Copy $MANPATH, $PATH, and exec-path from shell in OSX
-(when (memq window-system '(mac ns))
-  (exec-path-from-shell-initialize))
+;; Pymacs
+(autoload 'pymacs-apply "pymacs")
+(autoload 'pymacs-call "pymacs")
+(autoload 'pymacs-eval "pymacs" nil t)
+(autoload 'pymacs-exec "pymacs" nil t)
+(autoload 'pymacs-load "pymacs" nil t)
+(autoload 'pymacs-autoload "pymacs")
 
 ;; company-mode
+(company-auctex-init)
 (add-hook 'after-init-hook 'global-company-mode)
 
-;; nose.el
-(require 'nose)
-(add-hook 'python-mode-hook
-          (lambda ()
-            (local-set-key "\C-ca" 'nosetests-all)
-            (local-set-key "\C-cm" 'nosetests-module)
-            (local-set-key "\C-c." 'nosetests-one)
-            (local-set-key "\C-cpa" 'nosetests-pdb-all)
-            (local-set-key "\C-cpm" 'nosetests-pdb-module)
-            (local-set-key "\C-cp." 'nosetests-pdb-one)))
-
-;; latex
-(setq TeX-auto-save t)
-(setq TeX-PDF-mode t)
-
+;; auctex
 (eval-after-load "tex" 
   '(setcdr (assoc "LaTeX" TeX-command-list)
           '("%`%l%(mode) -shell-escape%' %t"
           TeX-run-TeX nil (latex-mode doctex-mode) :help "Run LaTeX")
     )
   )
- 
-;; use Skim as default pdf viewer
-;; Skim's displayline is used for forward search (from .tex to .pdf)
-;; option -b highlights the current line; option -g opens Skim in the background  
-(setq TeX-view-program-selection '((output-pdf "PDF Viewer")))
-(setq TeX-view-program-list
-     '(("PDF Viewer" "/Applications/Skim.app/Contents/SharedSupport/displayline -b -g %n %o %b")))
 
-;; color-theme
-(require 'color-theme-sanityinc-tomorrow)
+;; flycheck
+(add-hook 'after-init-hook #'global-flycheck-mode)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes (quote (sanityinc-tomorrow-night)))
+ '(ansi-color-faces-vector
+   [default bold shadow italic underline bold bold-italic bold])
+ '(ansi-color-names-vector
+   (vector "#657b83" "#dc322f" "#859900" "#b58900" "#268bd2" "#d33682" "#2aa198" "#fdf6e3"))
+ '(custom-enabled-themes (quote (sanityinc-solarized-dark)))
  '(custom-safe-themes
    (quote
-    ("06f0b439b62164c6f8f84fdda32b62fb50b6d00e8b01c2208e55543a6337433a" "82d2cac368ccdec2fcc7573f24c3f79654b78bf133096f9b40c20d97ec1d8016" default))))
+    ("4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" "4cf3221feff536e2b3385209e9b9dc4c2e0818a69a1cdb4b522756bcdf4e00a4" default)))
+ '(fci-rule-color "#eee8d5")
+ '(vc-annotate-background nil)
+ '(vc-annotate-color-map
+   (quote
+    ((20 . "#dc322f")
+     (40 . "#cb4b16")
+     (60 . "#b58900")
+     (80 . "#859900")
+     (100 . "#2aa198")
+     (120 . "#268bd2")
+     (140 . "#d33682")
+     (160 . "#6c71c4")
+     (180 . "#dc322f")
+     (200 . "#cb4b16")
+     (220 . "#b58900")
+     (240 . "#859900")
+     (260 . "#2aa198")
+     (280 . "#268bd2")
+     (300 . "#d33682")
+     (320 . "#6c71c4")
+     (340 . "#dc322f")
+     (360 . "#cb4b16"))))
+ '(vc-annotate-very-old-color nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

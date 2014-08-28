@@ -11,3 +11,5 @@ alias ga='git add'
 alias gf='git flow'
 
 alias rake='noglob rake'
+
+alias e='emacsclient -c'

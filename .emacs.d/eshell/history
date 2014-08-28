@@ -20,3 +20,9 @@ nosetests
 nosetests --nocapture
 nosetests --nocapture test/fusion/test_core.py:TestDecorator.test_fusing_stencils
 nosetests --nocapture test/fusion/test_core.py:TestDecorator.test_fusing_stencils --nologcapture
+ls
+mkdir elisp
+rmdir elisp/
+mkdir config
+eamcs config/init-packages.el
+emacs config/init-packages.el

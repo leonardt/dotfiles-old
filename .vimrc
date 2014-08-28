@@ -78,9 +78,9 @@ if !has("gui_running")
 endif
 " colorscheme hybrid
 colorscheme solarized
-" colorscheme base16-solarized
-set background=dark
-" set background=light
+" colorscheme base16-tomorrow
+" set background=dark
+set background=light
 
 " Highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
