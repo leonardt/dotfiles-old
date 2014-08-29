@@ -1,1 +1,0 @@
-("~/dotfiles/" "~/dev/aspire/hindemith/" "~/dev/aspire/stencil_code/")

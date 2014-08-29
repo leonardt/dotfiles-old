@@ -79,8 +79,8 @@ endif
 " colorscheme hybrid
 colorscheme solarized
 " colorscheme base16-tomorrow
-" set background=dark
-set background=light
+set background=dark
+" set background=light
 
 " Highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
