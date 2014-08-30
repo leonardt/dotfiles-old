@@ -79,6 +79,7 @@ endif
 " colorscheme hybrid
 colorscheme solarized
 " colorscheme base16-tomorrow
+" colorscheme base16-ocean
 set background=dark
 " set background=light
 
