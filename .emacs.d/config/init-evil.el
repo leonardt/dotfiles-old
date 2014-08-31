@@ -14,7 +14,7 @@
 
 (global-evil-leader-mode)
 (global-evil-surround-mode 1)
-(evilnc-default-hotkeys)
+;; (evilnc-default-hotkeys)
 (global-evil-matchit-mode 1)
 
 (provide 'init-evil)

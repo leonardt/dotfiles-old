@@ -77,8 +77,8 @@ if !has("gui_running")
   let g:solarized_termcolors=16
 endif
 " colorscheme hybrid
-colorscheme solarized
-" colorscheme base16-tomorrow
+" colorscheme solarized
+colorscheme base16-tomorrow
 " colorscheme base16-ocean
 set background=dark
 " set background=light
@@ -167,7 +167,7 @@ else
 endif
 
 if has("gui_running")
-    set guifont=Monaco:h12
+    set guifont=Akkurat-Mono:h12
     set guioptions=
 endif
 
