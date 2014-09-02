@@ -60,3 +60,8 @@ source $HOME/dotfiles/zsh/zsh-history-substring-search/zsh-history-substring-sea
 # Completion
 autoload -Uz compinit
 compinit
+
+# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
+HISTSIZE=1000
+SAVEHIST=1000
+HISTFILE=~/.zsh_history
