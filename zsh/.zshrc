@@ -1,25 +1,25 @@
-source $HOME/dotfiles/zsh/antigen/antigen.zsh
+# source $HOME/dotfiles/zsh/antigen/antigen.zsh
 
-antigen use oh-my-zsh
+# antigen use oh-my-zsh
 
-    # virtualenvwrapper
-    # vi-mode
-antigen bundles <<EOBUNDLES
-    git
-    extract
-    brew
-    pip
-    python
-    github
-    command-not-found
-    history
-    zsh-users/zsh-syntax-highlighting
-    sindresorhus/pure
-    zsh-users/zsh-history-substring-search
-    bobthecow/git-flow-completion
-EOBUNDLES
+#     # virtualenvwrapper
+#     # vi-mode
+# antigen bundles <<EOBUNDLES
+#     git
+#     extract
+#     brew
+#     pip
+#     python
+#     github
+#     command-not-found
+#     history
+#     zsh-users/zsh-syntax-highlighting
+#     sindresorhus/pure
+#     zsh-users/zsh-history-substring-search
+#     bobthecow/git-flow-completion
+# EOBUNDLES
 
-antigen apply
+# antigen apply
 
 # bind UP and DOWN arrow keys
 zmodload zsh/terminfo
@@ -72,3 +72,5 @@ source ~/.fzf.zsh
 
 # added by travis gem
 [ -f /Users/leonardtruong/.travis/travis.sh ] && source /Users/leonardtruong/.travis/travis.sh
+
+source $HOME/dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-hightlighting.zsh

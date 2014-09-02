@@ -78,8 +78,9 @@ if !has("gui_running")
 endif
 " colorscheme hybrid
 " colorscheme solarized
-colorscheme base16-tomorrow
-" colorscheme base16-ocean
+" colorscheme base16-tomorrow
+" colorscheme jellybeans
+colorscheme base16-ocean
 set background=dark
 " set background=light
 
