@@ -33,6 +33,7 @@ Plug 'honza/vim-snippets'
 " Python
 Plug 'jmcantrell/vim-virtualenv'  , { 'for' : 'python', 'on' : 'VirtualEnvActivate' }
 Plug 'klen/python-mode'           , { 'for' : 'python' }
+Plug 'ivanov/vim-ipython'         , { 'for' : 'python' }
 
 " Clojure
 Plug 'guns/vim-clojure-static'    , { 'for' : 'clojure' }
