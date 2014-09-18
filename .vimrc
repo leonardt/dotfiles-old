@@ -41,6 +41,9 @@ Plug 'tpope/vim-leiningen'        , { 'for' : 'clojure' }
 Plug 'guns/vim-clojure-highlight' , { 'for' : 'clojure' }
 Plug 'tpope/vim-fireplace'        , { 'for' : 'clojure' }
 
+" Javascript
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+
 " Coffeescript 
 Plug 'kchmck/vim-coffee-script'   , { 'for' : 'coffee' }
 Plug 'mtscout6/vim-cjsx'          , { 'for' : 'coffee' }
@@ -50,9 +53,10 @@ Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'chriskempson/base16-vim'
 Plug 'junegunn/seoul256.vim'
 Plug 'nanotech/jellybeans.vim'
-Plug 'bling/vim-airline'
+" Plug 'bling/vim-airline'
 Plug 'altercation/vim-colors-solarized'
 Plug 'w0ng/vim-hybrid'
+Plug 'zefei/cake16'
 
 Plug 'christoomey/vim-tmux-navigator'
 
@@ -82,6 +86,7 @@ endif
 " colorscheme base16-tomorrow
 " colorscheme jellybeans
 colorscheme base16-ocean
+" colorscheme cake16
 set background=dark
 " set background=light
 
@@ -169,7 +174,8 @@ else
 endif
 
 if has("gui_running")
-    set guifont=Akkurat-Mono:h12
+    set guifont=Akkurat-Mono\ For\ Powerline:h12
+    " set guifont=Menlo\ For\ Powerline:h12
     set guioptions=
 endif
 
@@ -339,6 +345,30 @@ endif
 " hi CtrlSpaceSearch   ctermfg=220  guifg=#ffd700 ctermbg=NONE  guibg=NONE    cterm=bold    gui=bold
 " hi CtrlSpaceStatus   ctermfg=230  guifg=#ffffd7 ctermbg=234   guibg=#1c1c1c cterm=NONE    gui=NONE
 " }}}
+
+" Statusline
+set laststatus=2
+autocmd BufWinEnter,WinEnter,VimEnter * let w:getcwd = getcwd()
+hi User2 ctermbg=0
+" let &statusline = " %{StatuslineTag()}"
+" let &statusline .= "%2* \ue0b1 %0* %<%f %{&readonly ? \"\ue0a2 \" : &modified ? '+ ' : ' '}"
+" let &statusline .= "%= %2*\u2571%0* %{&filetype == '' ? 'unknown' : &filetype} "
+" let &statusline .= "%2*\u2571%0* %p%% %2*\u2571%0* %l : %c "
+" let &statusline .= "\u2502 %p%% \u2502 %l : %c "
+let &statusline = "%2* \u2571  %{StatuslineTag()} \u2571 "
+let &statusline .= " %<%f %{&readonly ? \"\ue0a2 \" : &modified ? '+ ' : ' '}"
+" let &statusline .= "%= %{&filetype == '' ? 'unknown' : &filetype} "
+let &statusline .= "%= \u2571  %{&filetype == '' ? 'unknown' : &filetype} "
+let &statusline .= "\u2571  %p%% \u2571  %l : %c \u2571 "
+" let &statusline .= " %p%% %l : %c "
+function! StatuslineTag()
+  if exists('b:git_dir')
+    let dir = fnamemodify(b:git_dir[:-6], ':t')
+    return dir." \ue0a0 ".fugitive#head(7)
+  else
+    return fnamemodify(getwinvar(0, 'getcwd', getcwd()), ':t')
+  endif
+endfunction
 
 " Airline {{{
 set laststatus=2

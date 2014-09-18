@@ -14,3 +14,5 @@ alias gf='git flow'
 alias rake='noglob rake'
 
 alias e='emacsclient -c'
+
+alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'

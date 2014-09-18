@@ -22,7 +22,7 @@
     (define-key evil-normal-state-map (kbd "SPC f") 'helm-find-files)
     (define-key evil-normal-state-map (kbd "SPC b") 'helm-bookmarks))
   (after "projectile-autoloads"
-    (define-key evil-normal-state-map (kbd "C-p") 'projectile-find-file))
+    (define-key evil-normal-state-map (kbd "C-p") 'helm-projectile))
   (after "evil-args-autoloads"
     (define-key evil-inner-text-objects-map "a" 'evil-inner-arg)
     (define-key evil-outer-text-objects-map "a" 'evil-outer-arg))

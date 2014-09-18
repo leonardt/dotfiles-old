@@ -29,6 +29,9 @@ bindkey "^?" backward-delete-char
 export RISCV=$HOME/aspire/riscv/riscv
 export PATH=$PATH:$RISCV/bin
 
+# Cuda
+export PATH=$PATH:/usr/local/cuda/bin
+
 export FZF_DEFAULT_COMMAND='ag -l -g ""'
 
 # fe [FUZZY PATTERN] - Open the selected file with the default editor
