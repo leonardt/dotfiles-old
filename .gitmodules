@@ -19,3 +19,6 @@
 [submodule "zsh/pure"]
 	path = zsh/pure
 	url = https://github.com/sindresorhus/pure
+[submodule ".emacs.d/lisp/cs164-mode"]
+	path = .emacs.d/lisp/cs164-mode
+	url = https://github.com/yuanchenyang/cs164-mode

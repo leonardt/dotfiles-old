@@ -82,10 +82,10 @@ if !has("gui_running")
   let g:solarized_termcolors=16
 endif
 " colorscheme hybrid
-" colorscheme solarized
+colorscheme solarized
 " colorscheme base16-tomorrow
 " colorscheme jellybeans
-colorscheme base16-ocean
+" colorscheme base16-flat
 " colorscheme cake16
 set background=dark
 " set background=light
