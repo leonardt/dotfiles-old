@@ -8,20 +8,30 @@ Plug 'tpope/vim-commentary', { 'on': '<Plug>Commentary' }
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-markdown', { 'for': ['markdown', 'md']}
+Plug 'tpope/vim-vinegar'
+
+Plug 'airblade/vim-gitgutter'
+
+Plug 'terryma/vim-multiple-cursors'
+Plug 'Arkham/vim-quickfixdo'
+Plug 'whatyouhide/vim-lengthmatters'
 
 Plug 'justinmk/vim-sneak', { 'on': ['<Plug>Sneak_s', '<Plug>Sneak_S'] }
 Plug 'Lokaltog/vim-easymotion'
 Plug 'junegunn/vim-pseudocl'
 Plug 'junegunn/vim-oblique'
-Plug 'wincent/command-t', { 'do': 'sh -c \"cd ruby/command-t && ruby extconf.rb && make\"'}
+" Plug 'wincent/command-t', {\
+"     'do': 'sh -c \"cd ruby/command-t && ruby extconf.rb && make\"'}
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'rking/ag.vim'            , { 'on': 'Ag' }
 Plug 'junegunn/vim-easy-align' , { 'on': 'EasyAlign' }
 
 Plug 'wellle/targets.vim'
 
-Plug 'xolox/vim-misc'
-Plug 'xolox/vim-easytags'
-Plug 'majutsushi/tagbar'
+" Plug 'xolox/vim-misc'
+" Plug 'xolox/vim-easytags'
+" Plug 'majutsushi/tagbar'
 
 Plug 'scrooloose/syntastic'
 
@@ -31,7 +41,8 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 " Python
-Plug 'jmcantrell/vim-virtualenv'  , { 'for' : 'python', 'on' : 'VirtualEnvActivate' }
+Plug 'jmcantrell/vim-virtualenv'  , { 'for' : 'python',
+  \                                   'on' : 'VirtualEnvActivate' }
 Plug 'klen/python-mode'           , { 'for' : 'python' }
 Plug 'ivanov/vim-ipython'         , { 'for' : 'python' }
 
@@ -40,33 +51,35 @@ Plug 'guns/vim-clojure-static'    , { 'for' : 'clojure' }
 Plug 'tpope/vim-leiningen'        , { 'for' : 'clojure' }
 Plug 'guns/vim-clojure-highlight' , { 'for' : 'clojure' }
 Plug 'tpope/vim-fireplace'        , { 'for' : 'clojure' }
+Plug 'jpalardy/vim-slime'
 
 " Javascript
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 
-" Coffeescript 
+" Coffeescript
 Plug 'kchmck/vim-coffee-script'   , { 'for' : 'coffee' }
 Plug 'mtscout6/vim-cjsx'          , { 'for' : 'coffee' }
 
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 
-Plug 'chriskempson/base16-vim'
-Plug 'junegunn/seoul256.vim'
-Plug 'nanotech/jellybeans.vim'
-" Plug 'bling/vim-airline'
-Plug 'altercation/vim-colors-solarized'
-Plug 'w0ng/vim-hybrid'
-Plug 'zefei/cake16'
+" Plug 'chriskempson/base16-vim'
+" Plug 'junegunn/seoul256.vim'
+" Plug 'nanotech/jellybeans.vim'
+Plug 'bling/vim-airline'
+" Plug 'altercation/vim-colors-solarized'
+" Plug 'w0ng/vim-hybrid'
+" Plug 'zefei/cake16'
+Plug 'whatyouhide/vim-gotham'
 
 Plug 'christoomey/vim-tmux-navigator'
 
 Plug 'junegunn/goyo.vim',      { 'on': 'Goyo' }
 Plug 'junegunn/limelight.vim', { 'on': 'Limelight' }
 
-Plug 'benmills/vimux'
+" Plug 'benmills/vimux'
 
 " Plug 'LaTeX-Box-Team/LaTeX-Box'
-Plug 'lervag/vim-latex'
+" Plug 'lervag/vim-latex'
 
 call plug#end()
 
@@ -77,12 +90,13 @@ call plug#end()
 " colorscheme seoul256
 " colorscheme jellybeans
 " colorscheme base16-tomorrow
+colorscheme gotham
 if !has("gui_running")
   let g:hybrid_use_iTerm_colors = 1
   let g:solarized_termcolors=16
 endif
 " colorscheme hybrid
-colorscheme solarized
+" colorscheme solarized
 " colorscheme base16-tomorrow
 " colorscheme jellybeans
 " colorscheme base16-flat
@@ -99,8 +113,8 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 " Base16 Ocean
 " hi SignColumn ctermbg=0
-" hi Folded ctermbg=0
-set fillchars=fold:\ 
+hi Folded ctermbg=0 guibg=#121620
+set fillchars=fold:\ ,vert:┃
 
 " }}}
 
@@ -122,7 +136,7 @@ set undofile
 set undoreload=10000
 set list
 " set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
-set listchars=tab:▸\ ,extends:❯,precedes:❮
+set listchars=tab:▸\ ,extends:❯,precedes:❮,trail:·
 set lazyredraw
 set matchtime=3
 set showbreak=↪
@@ -174,9 +188,9 @@ else
 endif
 
 if has("gui_running")
-    set guifont=Akkurat-Mono\ For\ Powerline:h12
-    " set guifont=Menlo\ For\ Powerline:h12
-    set guioptions=
+  set guifont=Akkurat-Mono\ For\ Powerline:h12
+  " set guifont=Menlo\ For\ Powerline:h12
+  set guioptions=
 endif
 
 " Writes to the unnamed register also writes to the * and + registers. This
@@ -192,9 +206,9 @@ endif
 " Only show cursorline in the current window and in normal mode.
 
 augroup cline
-    au!
-    au WinLeave,InsertEnter * set nocursorline
-    au WinEnter,InsertLeave * set cursorline
+  au!
+  au WinLeave,InsertEnter * set nocursorline
+  au WinEnter,InsertLeave * set cursorline
 augroup END
 
 " }}}
@@ -261,22 +275,22 @@ set directory=~/.vim/tmp/swap//   " swap files
 
 " Make those folders automatically if they don't already exist.
 if !isdirectory(expand(&undodir))
-    call mkdir(expand(&undodir), "p")
+  call mkdir(expand(&undodir), "p")
 endif
 if !isdirectory(expand(&backupdir))
-    call mkdir(expand(&backupdir), "p")
+  call mkdir(expand(&backupdir), "p")
 endif
 if !isdirectory(expand(&directory))
-    call mkdir(expand(&directory), "p")
+  call mkdir(expand(&directory), "p")
 endif
 
 " }}}
 
 " Coffeescript {{{
 augroup ft_coffee
-    au!
+  au!
 
-    au FileType coffee setlocal shiftwidth=2
+  au FileType coffee setlocal shiftwidth=2
 augroup end
 " }}}
 
@@ -348,34 +362,41 @@ endif
 
 " Statusline
 set laststatus=2
-autocmd BufWinEnter,WinEnter,VimEnter * let w:getcwd = getcwd()
-hi User2 ctermbg=0
-" let &statusline = " %{StatuslineTag()}"
-" let &statusline .= "%2* \ue0b1 %0* %<%f %{&readonly ? \"\ue0a2 \" : &modified ? '+ ' : ' '}"
-" let &statusline .= "%= %2*\u2571%0* %{&filetype == '' ? 'unknown' : &filetype} "
-" let &statusline .= "%2*\u2571%0* %p%% %2*\u2571%0* %l : %c "
-" let &statusline .= "\u2502 %p%% \u2502 %l : %c "
-let &statusline = "%2* \u2571  %{StatuslineTag()} \u2571 "
-let &statusline .= " %<%f %{&readonly ? \"\ue0a2 \" : &modified ? '+ ' : ' '}"
-" let &statusline .= "%= %{&filetype == '' ? 'unknown' : &filetype} "
-let &statusline .= "%= \u2571  %{&filetype == '' ? 'unknown' : &filetype} "
-let &statusline .= "\u2571  %p%% \u2571  %l : %c \u2571 "
-" let &statusline .= " %p%% %l : %c "
-function! StatuslineTag()
-  if exists('b:git_dir')
-    let dir = fnamemodify(b:git_dir[:-6], ':t')
-    return dir." \ue0a0 ".fugitive#head(7)
-  else
-    return fnamemodify(getwinvar(0, 'getcwd', getcwd()), ':t')
-  endif
-endfunction
+" autocmd BufWinEnter,WinEnter,VimEnter * let w:getcwd = getcwd()
+" hi User2 ctermbg=8
+" " let &statusline = " %{StatuslineTag()}"
+" " let &statusline .= "%2* \ue0b1 %0* %<%f %{&readonly ? \"\ue0a2 \" : &modified ? '+ ' : ' '}"
+" " let &statusline .= "%= %2*\u2571%0* %{&filetype == '' ? 'unknown' : &filetype} "
+" " let &statusline .= "%2*\u2571%0* %p%% %2*\u2571%0* %l : %c "
+" " let &statusline .= "\u2502 %p%% \u2502 %l : %c "
+" " ---
+" let &statusline = "%2* \u2571  %{StatuslineTag()} \u2571 "
+" let &statusline .= " %<%f %{&readonly ? \"\ue0a2 \" : &modified ? '+ ' : ' '}"
+" " let &statusline .= "%= %{&filetype == '' ? 'unknown' : &filetype} "
+" let &statusline .= "%= \u2571  %{&filetype == '' ? 'unknown' : &filetype} "
+" let &statusline .= "\u2571  %p%% \u2571  %l : %c \u2571 "
+" " let &statusline .= " %p%% %l : %c "
+" " ---
+" let &statusline = "%2* %{StatuslineTag()} | "
+" let &statusline .= " %<%f %{&readonly ? \"\ue0a2 \" : &modified ? '+ ' : ' '}"
+" " let &statusline .= "%= %{&filetype == '' ? 'unknown' : &filetype} "
+" let &statusline .= "%= |  %{&filetype == '' ? 'unknown' : &filetype} "
+" let &statusline .= "|  %p%% |  %l : %c | "
+" function! StatuslineTag()
+"   if exists('b:git_dir')
+"     let dir = fnamemodify(b:git_dir[:-6], ':t')
+"     return dir." \ue0a0 ".fugitive#head(7)
+"   else
+"     return fnamemodify(getwinvar(0, 'getcwd', getcwd()), ':t')
+"   endif
+" endfunction
 
 " Airline {{{
 set laststatus=2
 let g:airline_left_sep=''
 let g:airline_right_sep=''
-let g:airline_powerline_fonts=0
-let g:airline_theme='tomorrow'
+let g:airline_powerline_fonts=1
+let g:airline_theme='gotham'
 " let g:airline_section_z=''
 " let g:airline_section_y=''
 " }}}
@@ -431,24 +452,24 @@ let g:syntastic_html_checkers = []
 " " Set minimum syntax keyword length.
 " let g:neocomplete#sources#syntax#min_keyword_length = 3
 " let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-" 
+"
 " " Define dictionary.
 " let g:neocomplete#sources#dictionary#dictionaries = {
 "     \ 'default' : '',
 "     \ 'vimshell' : $HOME.'/.vimshell_hist',
 "     \ 'scheme' : $HOME.'/.gosh_completions'
 "         \ }
-" 
+"
 " " Define keyword.
 " if !exists('g:neocomplete#keyword_patterns')
 "     let g:neocomplete#keyword_patterns = {}
 " endif
 " let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-" 
+"
 " " Plugin key-mappings.
 " inoremap <expr><C-g>     neocomplete#undo_completion()
 " inoremap <expr><C-l>     neocomplete#complete_common_string()
-" 
+"
 " " Recommended key-mappings.
 " " <CR>: close popup and save indent.
 " inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
@@ -464,7 +485,7 @@ let g:syntastic_html_checkers = []
 " inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 " inoremap <expr><C-y>  neocomplete#close_popup()
 " inoremap <expr><C-e>  neocomplete#cancel_popup()
-" 
+"
 " " Enable omni completion.
 " autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 " autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
@@ -531,12 +552,12 @@ omap s <Plug>Sneak_s
 omap S <Plug>Sneak_S
 " }}}
 
-" jedi-vim 
+" jedi-vim
 " let g:jedi#goto_definitions_command = "<leader>gd"
 " let g:jedi#auto_vim_configuration = 0
 " let g:jedi#completions_enabled=0
 " let g:jedi#popup_select_first = 0
-" 
+"
 
 " delimitmate {{{
 let delimitMate_expand_cr = 1
@@ -578,4 +599,16 @@ nnoremap <silent> <Leader>a :TagbarToggle<CR>
 let g:LatexBox_latexmk_async=1
 let g:LatexBox_latexmk_preview_continuously=1
 let g:LatexBox_quickfix=2
+" }}}
+
+" ctrlp {{{
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_working_path_mode = 'ra'
+" let g:ctrlp_user_command = 'find %s -type f'
+let g:ctrlp_custom_ignore = '\v[\/](out)'
+" }}}
+
+" slime {{{
+let g:slime_target = "tmux"
 " }}}
