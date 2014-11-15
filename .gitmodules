@@ -34,3 +34,9 @@
 [submodule "iterm/gotham-contrib"]
 	path = iterm/gotham-contrib
 	url = https://github.com/whatyouhide/gotham-contrib
+[submodule ".emacs.d/site-lisp/opencl-mode-emacs"]
+	path = .emacs.d/site-lisp/opencl-mode-emacs
+	url = https://github.com/salmanebah/opencl-mode-emacs.git
+[submodule "iterm/5e0a431531670e05dc4f"]
+	path = iterm/5e0a431531670e05dc4f
+	url = https://gist.github.com/5e0a431531670e05dc4f.git

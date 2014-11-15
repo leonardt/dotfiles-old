@@ -19,9 +19,10 @@ prompt pure
 
 source $HOME/dotfiles/zsh/.zsh_aliases
 
-export EDITOR='vim'
+export EDITOR='nvim'
 
 export PATH="/usr/local/bin:$PATH"
+# export PATH=$HOME/anaconda/bin:$PATH
 
 # Fix backspace in vi mode
 bindkey "^?" backward-delete-char
@@ -102,7 +103,7 @@ zle -N zle-keymap-select
 zle -N edit-command-line
 
 # vi-mode
-# bindkey -v
+bindkey -v
 
 # allow v to edit the command line (standard behaviour)
 # autoload -Uz edit-command-line
