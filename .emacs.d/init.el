@@ -27,15 +27,22 @@
 
 (recentf-mode 1)
 
-(require-package 'flx)
-(require-package 'flx-ido)
-(require 'flx-ido)
-(ido-mode 1)
-(ido-everywhere 1)
-(flx-ido-mode 1)
-;; disable ido faces to see flx highlights.
-(setq ido-enable-flex-matching t)
-(setq ido-use-faces nil)
+(setq backup-directory-alist `(("." . "~/.saves")))
+
+(require-package 'helm)
+(require 'helm-config)
+(helm-mode 1)
+
+
+;; (require-package 'flx)
+;; (require-package 'flx-ido)
+;; (require 'flx-ido)
+;; (ido-mode 1)
+;; (ido-everywhere 1)
+;; (flx-ido-mode 1)
+;; ;; disable ido faces to see flx highlights.
+;; (setq ido-enable-flex-matching t)
+;; (setq ido-use-faces nil)
 
 (require-package 'smartparens)
 (require 'smartparens-config)
@@ -123,6 +130,9 @@
 ;; (add-to-list 'company-backends 'company-anaconda)
 ;; (eval-after-load 'python '(semantic-mode 1))
 
+(require-package 'flycheck)
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
 (require-package 'tern)
 (require-package 'company-tern)
 (add-to-list 'company-backends 'company-tern)
@@ -130,8 +140,8 @@
 (require-package 'js2-mode)
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
 
-(require-package 'smex)
-(smex-initialize)
+;; (require-package 'smex)
+;; (smex-initialize)
 
 (evil-leader/set-leader "<SPC>")
 
@@ -148,7 +158,7 @@
 
 
 (evil-leader/set-key
-  "x" 'smex
+  "x" 'helm-M-x
   "c" 'compile
   "r" 'recompile
   "b" 'ido-switch-buffer
@@ -160,7 +170,7 @@
   "g c" 'magit-commit
   "p s" 'projectile-switch-project)
 
-(define-key evil-normal-state-map (kbd "C-p") 'projectile-find-file)
+(define-key evil-normal-state-map (kbd "C-p") 'helm-projectile)
 (require-package 'projectile)
 (projectile-global-mode)
 
