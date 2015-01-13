@@ -1,0 +1,56 @@
+;; -*- emacs-lisp -*- <14/11/23 14:47:14 /Users/leonardtruong/.emacs.d/tramp>
+;; Tramp connection history.  Don't change this file.
+;; You can delete it, forcing Tramp to reapply the checks.
+
+((["scp" "lennytruong" "a19.millennium.berkeley.edu" nil nil]
+  ("uname" "Linux 3.13.0-32-generic")
+  ("test" "test")
+  ("remote-path"
+   ("/bin" "/usr/bin" "/sbin" "/usr/sbin" "/usr/local/bin" "/usr/local/sbin"))
+  ("remote-shell" "/bin/sh")
+  ("locale" "LC_ALL=en_US.utf8")
+  ("~" "/home/eecs/lennytruong")
+  ("readlink" "\\readlink")
+  ("stat" "\\stat")
+  ("file-exists" "test -e")
+  ("id" "/usr/bin/id")
+  ("gid-integer" 760)
+  ("gvfs-monitor-dir" nil)
+  ("inotifywait" nil)
+  ("gid-string" "aspire-all1")
+  ("perl-file-spec" t)
+  ("perl-cwd-realpath" t)
+  ("perl" "\\perl")
+  ("ls" "/bin/ls --color=never")
+  ("ls-dired" t)
+  ("uid-integer" 13125))
+ (["scp" nil "adb" nil nil]
+  nil)
+ (["scp" nil "scp" nil nil]
+  nil)
+ (["scp" nil "rcp" nil nil]
+  nil)
+ (["scp" nil "ftp" nil nil]
+  nil)
+ (["scp" nil "star.cs.berkeley.edu" nil nil]
+  nil)
+ (["scp" nil "scpx" nil nil]
+  nil)
+ (["scp" nil "rsync" nil nil]
+  nil)
+ (["scp" nil "remcp" nil nil]
+  nil)
+ (["scp" nil "sftp" nil nil]
+  nil)
+ (["scp" nil "sshx" nil nil]
+  nil)
+ (["scp" nil "su" nil nil]
+  nil)
+ (["scp" nil "telnet" nil nil]
+  nil)
+ (["scp" nil "ssh" nil nil]
+  nil)
+ (["scp" nil "rsh" nil nil]
+  nil)
+ (["scp" nil "remsh" nil nil]
+  nil))

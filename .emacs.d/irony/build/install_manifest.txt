@@ -1,0 +1,1 @@
+/Users/leonardtruong/.emacs.d/irony/bin/irony-server

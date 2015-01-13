@@ -1,0 +1,152 @@
+;; Object optical_flow/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "optical_flow/"
+  :tables
+  (list
+    (semanticdb-table "tvl1.py"
+      :major-mode 'python-mode
+      :tags 
+        '( ("solver" include nil nil [1 26])
+            ("numpy" include nil nil [27 45])
+            ("sys" include nil nil [46 56])
+            ("cv2" include nil nil [57 67])
+            ("hindemith.operations.zip_with" include nil nil [68 127])
+            ("hindemith.types.hmarray" include nil nil [128 210])
+            ("hindemith.operations.map" include nil nil [211 276])
+            ("hindemith.utils" include nil nil [277 312])
+            ("hindemith.operations.structured_grid" include nil nil [313 377])
+            ("hindemith.operations.reduce" include nil nil [378 421])
+            ("hindemith.operations.interp" include nil nil [422 475])
+            ("hindemith.meta.core" include nil nil [476 512])
+            ("ctree.util" include nil nil [578 606])
+            ("EltWiseArrayOp" variable nil nil [609 639])
+            ("ZipWith" variable nil nil [640 663])
+            ("SpecializedMap" variable nil nil [664 694])
+            ("num_warps" variable nil nil [696 709])
+            ("n_inner" variable nil nil [710 722])
+            ("n_outer" variable nil nil [723 735])
+            ("median_filtering" variable nil nil [736 756])
+            ("theta" variable nil nil [757 767])
+            ("tau" variable nil nil [768 777])
+            ("l" variable nil nil [778 785])
+            ("epsilon" variable nil nil [796 810])
+            ("n" variable nil nil [811 817])
+            ("symbol_table" variable nil nil [819 948])
+            ("" code nil nil [959 973])
+            ("th" function (:arguments 
+              ( ("rho_elt" variable nil (reparse-symbol function_parameters) [981 988])
+                ("gradient_elt" variable nil (reparse-symbol function_parameters) [990 1002])
+                ("delta_elt" variable nil (reparse-symbol function_parameters) [1004 1013])
+                ("u_elt" variable nil (reparse-symbol function_parameters) [1015 1020]))              ) nil [974 1371])
+            ("spec_th" variable nil nil [1373 1395])
+            ("update_u" function
+               (:decorators 
+                  ( ("meta" function (:type "decorator") nil nil))                  
+                :arguments 
+                  ( ("u1" variable nil (reparse-symbol function_parameters) [1417 1419])
+                    ("u2" variable nil (reparse-symbol function_parameters) [1421 1423])
+                    ("rho_c" variable nil (reparse-symbol function_parameters) [1425 1430])
+                    ("gradient" variable nil (reparse-symbol function_parameters) [1432 1440])
+                    ("I1wx" variable nil (reparse-symbol function_parameters) [1442 1446])
+                    ("I1wy" variable nil (reparse-symbol function_parameters) [1448 1452])
+                    ("div_p1" variable nil (reparse-symbol function_parameters) [1454 1460])
+                    ("div_p2" variable nil (reparse-symbol function_parameters) [1462 1468]))                  )
+                nil [1398 1744])
+            ("centered_gradient" function (:arguments 
+              ( ("m" variable nil (reparse-symbol function_parameters) [1768 1769]))              ) nil [1746 1798])
+            ("stencil_code.stencil_kernel" include nil nil [1799 1846])
+            ("Dx" type
+               (:superclasses ("Stencil")
+                :members 
+                  ( ("neighborhoods" variable nil (reparse-symbol indented_block_body) [1872 1912])
+                    ("kernel" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [1929 1933])
+                            ("in_grid" variable nil (reparse-symbol function_parameters) [1935 1942])
+                            ("out_grid" variable nil (reparse-symbol function_parameters) [1944 1952]))                          )
+                        (reparse-symbol indented_block_body) [1918 2125]))                  
+                :type "class")
+                nil [1849 2125])
+            ("" code nil nil [2143 2158])
+            ("dx" function (:arguments 
+              ( ("src" variable nil (reparse-symbol function_parameters) [2166 2169])
+                ("output" variable nil (reparse-symbol function_parameters) [2171 2177]))              ) nil [2159 2253])
+            ("" code nil nil [2271 2286])
+            ("dy" function (:arguments 
+              ( ("src" variable nil (reparse-symbol function_parameters) [2294 2297])
+                ("output" variable nil (reparse-symbol function_parameters) [2299 2305]))              ) nil [2287 2381])
+            ("" code nil nil [2399 2414])
+            ("divergence" function (:arguments 
+              ( ("v1" variable nil (reparse-symbol function_parameters) [2430 2432])
+                ("v2" variable nil (reparse-symbol function_parameters) [2434 2436])
+                ("output" variable nil (reparse-symbol function_parameters) [2438 2444]))              ) nil [2415 2544])
+            ("forward_gradient" function (:arguments 
+              ( ("m" variable nil (reparse-symbol function_parameters) [2575 2576]))              ) nil [2554 2603])
+            ("cl_build_flow_map" function (:arguments 
+              ( ("xs" variable nil (reparse-symbol function_parameters) [2627 2629])
+                ("ys" variable nil (reparse-symbol function_parameters) [2631 2633])
+                ("u1" variable nil (reparse-symbol function_parameters) [2635 2637])
+                ("u2" variable nil (reparse-symbol function_parameters) [2639 2641]))              ) nil [2605 2696])
+            ("taut" code nil nil [2698 2716])
+            ("one" variable nil nil [2717 2726])
+            ("update_dual_variables" function
+               (:decorators 
+                  ( ("meta" function (:type "decorator") nil nil))                  
+                :arguments 
+                  ( ("p11" variable nil (reparse-symbol function_parameters) [2798 2801])
+                    ("p12" variable nil (reparse-symbol function_parameters) [2803 2806])
+                    ("p21" variable nil (reparse-symbol function_parameters) [2808 2811])
+                    ("p22" variable nil (reparse-symbol function_parameters) [2813 2816])
+                    ("u1x" variable nil (reparse-symbol function_parameters) [2818 2821])
+                    ("u1y" variable nil (reparse-symbol function_parameters) [2823 2826])
+                    ("u2x" variable nil (reparse-symbol function_parameters) [2828 2831])
+                    ("u2y" variable nil (reparse-symbol function_parameters) [2833 2836]))                  )
+                nil [2766 3119])
+            ("calc_grad_rho_c" function
+               (:decorators 
+                  ( ("meta" function (:type "decorator") nil nil))                  
+                :arguments 
+                  ( ("i1wx" variable nil (reparse-symbol function_parameters) [3147 3151])
+                    ("i1wy" variable nil (reparse-symbol function_parameters) [3153 3157])
+                    ("i1w" variable nil (reparse-symbol function_parameters) [3159 3162])
+                    ("u1" variable nil (reparse-symbol function_parameters) [3164 3166])
+                    ("u2" variable nil (reparse-symbol function_parameters) [3168 3170])
+                    ("i0" variable nil (reparse-symbol function_parameters) [3172 3174]))                  )
+                nil [3121 3282])
+            ("warp" function (:arguments 
+              ( ("i1" variable nil (reparse-symbol function_parameters) [3293 3295])
+                ("i1x" variable nil (reparse-symbol function_parameters) [3297 3300])
+                ("i1y" variable nil (reparse-symbol function_parameters) [3302 3305])
+                ("_f1" variable nil (reparse-symbol function_parameters) [3307 3310])
+                ("_f2" variable nil (reparse-symbol function_parameters) [3312 3315]))              ) nil [3284 3463])
+            ("TVL1" type
+               (:superclasses ("Solver")
+                :members 
+                  ( ("solve" function
+                       (:parent "dummy"
+                        :arguments 
+                          ( ("self" variable nil (reparse-symbol function_parameters) [3499 3503])
+                            ("i0" variable nil (reparse-symbol function_parameters) [3505 3507])
+                            ("i1" variable nil (reparse-symbol function_parameters) [3509 3511])
+                            ("u1" variable nil (reparse-symbol function_parameters) [3513 3515])
+                            ("u2" variable nil (reparse-symbol function_parameters) [3517 3519]))                          )
+                        (reparse-symbol indented_block_body) [3489 5332]))                  
+                :type "class")
+                nil [3465 5332])
+            ("os" include nil nil [5334 5343])
+            ("file_path" variable nil nil [5344 5399])
+            ("main" function nil nil [5402 6154])
+            ("if" code nil nil [6156 6194]))          
+      :file "tvl1.py"
+      :pointmax 6194
+      :fsize 6193
+      :lastmodtime '(21667 24458 0 0)
+      :unmatched-syntax nil)
+    (semanticdb-table "solver.py"
+      :file "solver.py"
+      :fsize 1959
+      :lastmodtime '(21667 10752 0 0)))
+  :file "!Users!leonardtruong!dev!aspire!hindemith!examples!optical_flow!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2")

@@ -112,7 +112,7 @@
 (add-hook 'geiser-mode-hook #'aggressive-indent-mode)
 
 (require-package 'ycmd)
-(set-variable 'ycmd-server-command '("python" "/Users/leonardtruong/dev/projects/ycmd/ycmd"))
+(set-variable 'ycmd-server-command '("python" "/Users/leonardtruong/dev/projects/ycmd"))
 (ycmd-setup)
 (require-package 'company-ycmd)
 (company-ycmd-setup)

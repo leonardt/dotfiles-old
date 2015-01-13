@@ -32,6 +32,10 @@ export PATH=$PATH:$RISCV/bin
 
 # Cuda
 export PATH=$PATH:/usr/local/cuda/bin
+export C_INCLUDE_PATH=$C_INCLUDE_PATH:/opt/leonardtruong/include
+export CXX_INCLUDE_PATH=$CXX_INCLUDE_PATH:/opt/leonardtruong/include
+export LIBRARY_PATH=$LIBRARY_PATH:/opt/leonardtruong/lib
+export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/opt/leonardtruong/lib
 
 export FZF_DEFAULT_COMMAND='ag -l -g ""'
 
@@ -125,3 +129,4 @@ bindkey -v
 export PATH=/Developer/NVIDIA/CUDA-6.5/bin:$PATH
 export DYLD_LIBRARY_PATH=/Developer/NVIDIA/CUDA-6.5/lib:$DYLD_LIBRARY_PATH
 export DYLD_FALLBACK_LIBRARY_PATH=/usr/local/cuda/lib:/usr/local/lib:/usr/lib:
+export PYTHONPATH=$HOME/dev/projects/caffe/python:$PYTHONPATH

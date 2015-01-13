@@ -1,6 +1,5 @@
 if has('nvim')
   runtime! python_setup.vim
-  set unnamedclip
 endif
 
 call plug#begin('~/.nvim/plugged')
@@ -25,15 +24,28 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'Raimondi/delimitMate'
 Plug 'scrooloose/syntastic'
 
-Plug 'klen/python-mode'
+" Plug 'klen/python-mode'
 
-Plug 'christoomey/vim-tmux-navigator'
+Plug 'chriskempson/base16-vim'
+
+Plug 'benekastah/neomake'
+
+Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }
+Plug 'mattn/emmet-vim'
+
+" Plug 'Shougo/unite.vim'
+" Plug 'Shougo/vimproc.vim', { 'do': 'make -f make_mac.mak' }
+
+Plug 'petRUShka/vim-opencl'
 
 call plug#end()
 
-" colorscheme gotham
+colorscheme gotham
 let g:hybrid_use_iTerm_colors = 1
-colorscheme hybrid
+" colorscheme hybrid
+" set background=dark
+" colorscheme base16-ocean
+" colorscheme base16-tomorrow
 
 " Highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
@@ -44,6 +56,8 @@ set history=1000
 set undofile
 set undoreload=10000
 set listchars=tab:▸\ ,extends:❯,precedes:❮,trail:·
+set fillchars=fold:\ ,vert:┃
+hi Folded ctermbg=0 guibg=#121620
 
 " Save when losing focus
 au FocusLost * :silent! wall
@@ -175,6 +189,8 @@ let g:pymode_options = 0
 let g:pymode_options_colorcolumn = 0
 let g:pymode_rope = 0
 let g:pymode_rope_completion = 0
+let g:pymode_breakpoint = 0
+let g:pymode_run = 0
 " }}}
 
 " youcompleteme {{{
@@ -192,3 +208,27 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 let g:UltiSnipsEditSplit="vertical"
 " }}}
+
+" unite {{{
+" call unite#filters#sorter_default#use(['sorter_rank'])
+" call unite#filters#matcher_default#use(['matcher_fuzzy'])
+" 
+" nnoremap <leader>r :<C-u>Unite -start-insert file_rec/async:!<CR>
+" nnoremap <leader>b :<C-u>Unite buffer<CR>
+" let g:unite_source_history_yank_enable = 1
+" nnoremap <leader>y :<C-u>Unite history/yank<CR>
+" nnoremap <leader>o :<C-u>Unite outline<CR>
+" 
+" if executable('ag')
+"   " let g:unite_source_rec_async_command = 
+"   "       \ 'ag --follow --nocolor --nogroup --ignore ".hg" --ignore ".svn"' .
+"   "       \ '--ignore ".git" --ignore ".bzr" --hidden -g ""'
+"   let g:unite_source_grep_command = 'ag'
+"   let g:unite_source_grep_default_opts =
+"   \ '-i --line-numbers --nocolor --nogroup --hidden --ignore ' .
+"   \  '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
+"   let g:unite_source_grep_recursive_opt = ''
+" endif
+" }}}
+
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|bower_components'
