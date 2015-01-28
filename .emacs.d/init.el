@@ -1,3 +1,59 @@
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(TeX-command-list
+   (quote
+    (("TeX" "%(PDF)%(tex) %(file-line-error) %(extraopts) %`%S%(PDFout)%(mode)%' %t" TeX-run-TeX nil
+      (plain-tex-mode texinfo-mode ams-tex-mode)
+      :help "Run plain TeX")
+     ("LaTeX" "%`%l%(mode)%' %t" TeX-run-TeX nil
+      (latex-mode doctex-mode)
+      :help "Run LaTeX")
+     ("Makeinfo" "makeinfo %(extraopts) %t" TeX-run-compile nil
+      (texinfo-mode)
+      :help "Run Makeinfo with Info output")
+     ("Makeinfo HTML" "makeinfo %(extraopts) --html %t" TeX-run-compile nil
+      (texinfo-mode)
+      :help "Run Makeinfo with HTML output")
+     ("AmSTeX" "%(PDF)amstex %(extraopts) %`%S%(PDFout)%(mode)%' %t" TeX-run-TeX nil
+      (ams-tex-mode)
+      :help "Run AMSTeX")
+     ("ConTeXt" "texexec --once --texutil %(extraopts) %(execopts)%t" TeX-run-TeX nil
+      (context-mode)
+      :help "Run ConTeXt once")
+     ("ConTeXt Full" "texexec %(extraopts) %(execopts)%t" TeX-run-TeX nil
+      (context-mode)
+      :help "Run ConTeXt until completion")
+     ("BibTeX" "bibtex %s" TeX-run-BibTeX nil t :help "Run BibTeX")
+     ("Biber" "biber %s" TeX-run-Biber nil t :help "Run Biber")
+     ("View" "open -a Skim.app %s.pdf" TeX-run-command t t :help "Run Viewer")
+     ("Print" "%p" TeX-run-command t t :help "Print the file")
+     ("Queue" "%q" TeX-run-background nil t :help "View the printer queue" :visible TeX-queue-command)
+     ("File" "%(o?)dvips %d -o %f " TeX-run-command t t :help "Generate PostScript file")
+     ("Index" "makeindex %s" TeX-run-command nil t :help "Create index file")
+     ("Xindy" "texindy %s" TeX-run-command nil t :help "Run xindy to create index file")
+     ("Check" "lacheck %s" TeX-run-compile nil
+      (latex-mode)
+      :help "Check LaTeX file for correctness")
+     ("ChkTeX" "chktex -v6 %s" TeX-run-compile nil
+      (latex-mode)
+      :help "Check LaTeX file for common mistakes")
+     ("Spell" "(TeX-ispell-document \"\")" TeX-run-function nil t :help "Spell-check the document")
+     ("Clean" "TeX-clean" TeX-run-function nil t :help "Delete generated intermediate files")
+     ("Clean All" "(TeX-clean t)" TeX-run-function nil t :help "Delete generated intermediate and output files")
+     ("Other" "" TeX-run-command t t :help "Run an arbitrary command"))))
+ '(custom-safe-themes
+   (quote
+    ("b458d10c9ea0c8c465635b7b13e1bd23f04e6b696b1ca96cb2c4eca35a31641e" "9dae95cdbed1505d45322ef8b5aa90ccb6cb59e0ff26fef0b8f411dfc416c552" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "756597b162f1be60a12dbd52bab71d40d6a2845a3e3c2584c6573ee9c332a66e" "30a8a5a9099e000f5d4dbfb2d6706e0a94d56620320ce1071eede5481f77d312" default))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
 ;; (add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
@@ -10,6 +66,9 @@
     (unless (assoc package package-archive-contents)
       (package-refresh-contents))
     (package-install package)))
+
+(server-start)
+(setenv "EDITOR" "emacsclient")
 
 (when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
@@ -34,15 +93,15 @@
 (helm-mode 1)
 
 
-;; (require-package 'flx)
-;; (require-package 'flx-ido)
-;; (require 'flx-ido)
-;; (ido-mode 1)
-;; (ido-everywhere 1)
-;; (flx-ido-mode 1)
-;; ;; disable ido faces to see flx highlights.
-;; (setq ido-enable-flex-matching t)
-;; (setq ido-use-faces nil)
+(require-package 'flx)
+(require-package 'flx-ido)
+(require 'flx-ido)
+(ido-mode 1)
+(ido-everywhere 1)
+(flx-ido-mode 1)
+;; disable ido faces to see flx highlights.
+(setq ido-enable-flex-matching t)
+(setq ido-use-faces nil)
 
 (require-package 'smartparens)
 (require 'smartparens-config)
@@ -73,6 +132,7 @@
 
 (require-package 'evil-leader)
 (global-evil-leader-mode)
+(evil-leader/set-leader "<SPC>")
 
 (setq evilnc-hotkey-comment-operator "gc")
 (require-package 'evil-nerd-commenter)
@@ -121,8 +181,20 @@
 (require-package 'ycmd)
 (set-variable 'ycmd-server-command '("python" "/Users/leonardtruong/dev/projects/ycmd/ycmd"))
 (ycmd-setup)
+;; (add-hook 'c++-mode-hook 'ycmd-mode)
 (require-package 'company-ycmd)
 (company-ycmd-setup)
+
+(require-package 'nose)
+(require 'nose)
+(setq nose-global-name "nosetests-2.7")
+(add-hook 'python-mode-hook (lambda () (nose-mode t)))
+(evil-leader/set-key
+  "t a" 'nosetests-all
+  "t m" 'nosetests-module
+  "t o" 'nosetests-one
+  "t l" 'nosetests-again)
+
 ;; (require-package 'anaconda-mode)
 ;; (add-hook 'python-mode-hook 'anaconda-mode)
 ;; (add-hook 'python-mode-hook 'eldoc-mode)
@@ -143,7 +215,6 @@
 ;; (require-package 'smex)
 ;; (smex-initialize)
 
-(evil-leader/set-leader "<SPC>")
 
 (require-package 'shell-pop)
 
@@ -156,8 +227,16 @@
 (define-key evil-insert-state-map (kbd "C-z") 'shell-pop)
 (global-set-key (kbd "C-z") 'shell-pop)
 
+(require-package 'projectile)
+(projectile-global-mode)
+
+(require-package 'perspective)
+(persp-mode)
+(require-package 'persp-projectile)
+(require 'persp-projectile)
 
 (evil-leader/set-key
+  "<SPC>" 'helm-mini
   "x" 'helm-M-x
   "c" 'compile
   "r" 'recompile
@@ -168,28 +247,48 @@
   "g p s" 'magit-push
   "g p l" 'magit-pull
   "g c" 'magit-commit
-  "p s" 'projectile-switch-project)
+  "s p" 'projectile-persp-switch-project
+  "p s" 'persp-switch)
 
 (define-key evil-normal-state-map (kbd "C-p") 'helm-projectile)
-(require-package 'projectile)
-(projectile-global-mode)
+
+(require-package 'auctex)
+(setq TeX-parse-self t); Enable parse on load.
+(setq TeX-auto-save t); Enable parse on save.
+(setq-default TeX-master nil)
+(eval-after-load "preview"
+  '(add-to-list 'preview-default-preamble "\\PreviewEnvironment{tikzpicture}" t)
+  )
+
+(add-hook 'TeX-mode-hook 'flyspell-mode); Enable Flyspell mode for TeX modes such as AUCTeX. Highlights all misspelled words.
+(setq ispell-dictionary "english"); Default dictionary. To change do M-x ispell-change-dictionary RET.
+
+;; LaTeX-math-mode http://www.gnu.org/s/auctex/manual/auctex/Mathematics.html
+(add-hook 'TeX-mode-hook 'LaTeX-math-mode)
+
+(require-package 'company-auctex)
+(company-auctex-init)
+
 
 (require-package 'gotham-theme)
 (require-package 'zenburn-theme)
-(load-theme 'gotham t)
+(require-package 'solarized-theme)
+(require-package 'color-theme-sanityinc-tomorrow)
+(require-package 'flatui-theme)
+
+;; (load-theme 'sanityinc-tomorrow-night t)
+;; (load-theme 'solarized-dark t)
+(require-package 'smart-mode-line)
+(sml/setup)
+(sml/apply-theme 'automatic)
+
+(require-package 'theme-changer)
+(setq calendar-location-name "Berkeley, CA") 
+(setq calendar-latitude 37.89)
+(setq calendar-longitude -122.28)
+;; (load-theme 'solarized-light t)
+(require 'theme-changer)
+(change-theme 'solarized-light 'solarized-dark)
+
 (add-to-list 'default-frame-alist
-             '(font . "Akkurat-Mono-11"))
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("30a8a5a9099e000f5d4dbfb2d6706e0a94d56620320ce1071eede5481f77d312" default))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+             '(font . "Akkurat Mono-12"))

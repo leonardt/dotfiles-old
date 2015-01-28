@@ -22,7 +22,7 @@ source $HOME/dotfiles/zsh/.zsh_aliases
 export EDITOR='nvim'
 
 export PATH="/usr/local/bin:$PATH"
-# export PATH=$HOME/anaconda/bin:$PATH
+export PATH=$HOME/anaconda/bin:$PATH
 
 # Fix backspace in vi mode
 bindkey "^?" backward-delete-char
