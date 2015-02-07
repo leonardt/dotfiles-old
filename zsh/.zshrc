@@ -21,8 +21,8 @@ source $HOME/dotfiles/zsh/.zsh_aliases
 
 export EDITOR='nvim'
 
-export PATH="/usr/local/bin:$PATH"
-export PATH=$HOME/anaconda/bin:$PATH
+export PATH=/usr/local/bin:$PATH
+# export PATH=$HOME/anaconda/bin:$PATH
 
 # Fix backspace in vi mode
 bindkey "^?" backward-delete-char
@@ -126,7 +126,7 @@ bindkey -v
 # if [[ "$RPS1" == "" && "$RPROMPT" == "" ]]; then
 #   RPS1='$(vi_mode_prompt_info)'
 # fi
-export PATH=/Developer/NVIDIA/CUDA-6.5/bin:$PATH
-export DYLD_LIBRARY_PATH=/Developer/NVIDIA/CUDA-6.5/lib:$DYLD_LIBRARY_PATH
+export PATH=/Developer/NVIDIA/CUDA-7.0/bin:$PATH
+export DYLD_LIBRARY_PATH=/Developer/NVIDIA/CUDA-7.0/lib:$DYLD_LIBRARY_PATH
 export DYLD_FALLBACK_LIBRARY_PATH=/usr/local/cuda/lib:/usr/local/lib:/usr/lib:
 export PYTHONPATH=$HOME/dev/projects/caffe/python:$PYTHONPATH
