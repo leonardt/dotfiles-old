@@ -130,3 +130,6 @@ export PATH=/Developer/NVIDIA/CUDA-7.0/bin:$PATH
 export DYLD_LIBRARY_PATH=/Developer/NVIDIA/CUDA-7.0/lib:$DYLD_LIBRARY_PATH
 export DYLD_FALLBACK_LIBRARY_PATH=/usr/local/cuda/lib:/usr/local/lib:/usr/lib:
 export PYTHONPATH=$HOME/dev/projects/caffe/python:$PYTHONPATH
+
+export WORKON_HOME=~/.envs
+source /usr/local/bin/virtualenvwrapper.sh

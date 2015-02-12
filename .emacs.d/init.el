@@ -40,6 +40,10 @@
 (server-start)
 (setenv "EDITOR" "emacsclient")
 
+(require-package 'exec-path-from-shell)
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
+
 (fset 'yes-or-no-p 'y-or-n-p)
 
 (when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
@@ -48,6 +52,8 @@
 (blink-cursor-mode -1)
 (setq inhibit-startup-screen t)
 (setq ring-bell-function 'ignore)
+
+(global-hl-line-mode)
 
 (require-package 'flx)
 (require-package 'flx-ido)
