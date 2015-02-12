@@ -24,6 +24,8 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'Raimondi/delimitMate'
 Plug 'scrooloose/syntastic'
 
+Plug 'christoomey/vim-tmux-navigator'
+
 " Plug 'klen/python-mode'
 
 Plug 'chriskempson/base16-vim'
@@ -120,7 +122,7 @@ set softtabstop=2
 set expandtab
 set wrap
 set textwidth=80
-set formatoptions=qrn1j
+" set formatoptions=qrn1j
 " set colorcolumn=+1
 
 " }}}
