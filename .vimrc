@@ -2,7 +2,7 @@ if has('nvim')
   runtime! python_setup.vim
 endif
 
-call plug#begin('~/.nvim/plugged')
+call plug#begin('~/.vim/plugged')
 
 syntax on
 
@@ -133,9 +133,9 @@ set textwidth=80
 set backup                        " enable backups
 set noswapfile                    " it's 2013, Vim.
 
-set undodir=~/.nvim/tmp/undo//     " undo files
-set backupdir=~/.nvim/tmp/backup// " backups
-set directory=~/.nvim/tmp/swap//   " swap files
+set undodir=~/.vim/tmp/undo//     " undo files
+set backupdir=~/.vim/tmp/backup// " backups
+set directory=~/.vim/tmp/swap//   " swap files
 
 " Make those folders automatically if they don't already exist.
 if !isdirectory(expand(&undodir))
