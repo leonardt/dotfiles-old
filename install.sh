@@ -8,7 +8,6 @@ ln -s `pwd`/zsh/.zshrc ~/.zshrc
 ln -s `pwd`/.vimrc ~/.vimrc
 ln -s `pwd`/.tmux.conf ~/.tmux.conf
 ln -s `pwd`/.tmux-osx.conf ~/.tmux-osx.conf
-ln -s `pwd`/.amethyst ~/.amethyst
 ln -s `pwd`/.emacs.d ~/.emacs.d
 ln -s `pwd`/zsh/pure/pure.zsh `pwd`/zsh/prompt_pure_setup
 
