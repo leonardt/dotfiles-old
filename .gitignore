@@ -1,4 +1,5 @@
 .DS_Store
+zsh/prompt_pure_setup
 .emacs.d/elpa
 .emacs.d/.python-environments
 .emacs.d/url
