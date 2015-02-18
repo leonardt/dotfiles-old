@@ -23,6 +23,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 
 Plug 'Raimondi/delimitMate'
 Plug 'scrooloose/syntastic'
+" Plug 'benekastah/neomake'
 
 Plug 'christoomey/vim-tmux-navigator'
 
@@ -30,7 +31,7 @@ Plug 'christoomey/vim-tmux-navigator'
 
 Plug 'chriskempson/base16-vim'
 
-Plug 'benekastah/neomake'
+" Plug 'benekastah/neomake'
 
 Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }
 Plug 'mattn/emmet-vim'
@@ -42,11 +43,11 @@ Plug 'petRUShka/vim-opencl'
 
 call plug#end()
 
-colorscheme gotham
+" colorscheme gotham
 let g:hybrid_use_iTerm_colors = 1
 " colorscheme hybrid
-" set background=dark
-" colorscheme base16-ocean
+set background=dark
+colorscheme base16-ocean
 " colorscheme base16-tomorrow
 
 " Highlight VCS conflict markers
@@ -71,6 +72,7 @@ let maplocalleader = "\\"
 set incsearch
 set ignorecase
 set smartcase
+set cursorline
 
 if exists('$TMUX')
   let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
@@ -234,3 +236,5 @@ let g:UltiSnipsEditSplit="vertical"
 " }}}
 
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|bower_components'
+
+" autocmd! BufWritePost * Neomake

@@ -34,8 +34,8 @@ export PATH=$PATH:$RISCV/bin
 export PATH=$PATH:/usr/local/cuda/bin
 export C_INCLUDE_PATH=$C_INCLUDE_PATH:/opt/leonardtruong/include
 export CXX_INCLUDE_PATH=$CXX_INCLUDE_PATH:/opt/leonardtruong/include
-export LIBRARY_PATH=$LIBRARY_PATH:/opt/leonardtruong/lib
-export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/opt/leonardtruong/lib
+export LIBRARY_PATH=$LIBRARY_PATH:/opt/leonardtruong/lib:/opt/intel/composerxe/lib
+export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/opt/leonardtruong/lib:/opt/intel/composerxe/lib
 
 export FZF_DEFAULT_COMMAND='ag -l -g ""'
 
@@ -127,7 +127,7 @@ bindkey -v
 #   RPS1='$(vi_mode_prompt_info)'
 # fi
 export PATH=/Developer/NVIDIA/CUDA-7.0/bin:$PATH
-export DYLD_LIBRARY_PATH=/Developer/NVIDIA/CUDA-7.0/lib:$DYLD_LIBRARY_PATH
+export DYLD_LIBRARY_PATH=/Developer/NVIDIA/CUDA-7.0/lib:/opt/intel/composerxe/lib:$DYLD_LIBRARY_PATH
 export DYLD_FALLBACK_LIBRARY_PATH=/usr/local/cuda/lib:/usr/local/lib:/usr/lib:
 export PYTHONPATH=$HOME/dev/projects/caffe/python:$PYTHONPATH
 

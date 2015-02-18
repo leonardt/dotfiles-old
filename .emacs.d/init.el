@@ -41,6 +41,8 @@
 (setenv "EDITOR" "emacsclient")
 
 (require-package 'exec-path-from-shell)
+(exec-path-from-shell-copy-env "WORKON_HOME")
+(exec-path-from-shell-copy-env "PYTHONPATH")
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
 
@@ -87,6 +89,7 @@
 (smartparens-global-mode t)
 
 (setq-default indent-tabs-mode nil)
+(setq-default tab-width 2)
 
 (require-package 'evil)
 (evil-mode 1)
@@ -108,6 +111,11 @@
 (evil-leader/set-leader "<SPC>")
 
 (setq evilnc-hotkey-comment-operator "gc")
+(add-hook 'c-mode-common-hook
+  (lambda ()
+    ;; Preferred comment style
+    (setq comment-start "// "
+          comment-end "")))
 (require-package 'evil-nerd-commenter)
 (require 'evil-nerd-commenter)
 
@@ -143,6 +151,9 @@
   (when (null (yas-expand))
     (company-select-next)))
 
+(add-hook 'term-mode-hook (lambda()
+        (setq yas-dont-activate t)))
+
 (global-company-mode)
 (define-key company-active-map (kbd "<tab>") 'my-company-tab)
 
@@ -160,6 +171,8 @@
 (require-package 'smex)
 (require 'smex)
 (smex-initialize)
+
+(require-package 'lua-mode)
 
 (evil-add-hjkl-bindings magit-log-mode-map 'emacs)
 (evil-add-hjkl-bindings magit-commit-mode-map 'emacs)
