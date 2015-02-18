@@ -16,3 +16,6 @@
 [submodule ".emacs.d/site-lisp/opencl-mode-emacs"]
 	path = .emacs.d/site-lisp/opencl-mode-emacs
 	url = https://github.com/salmanebah/opencl-mode-emacs.git
+[submodule "zsh/antigen"]
+	path = zsh/antigen
+	url = https://github.com/zsh-users/antigen.git

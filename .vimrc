@@ -20,6 +20,7 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-markdown', { 'for': ['markdown', 'md']}
 
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'rking/ag.vim'
 
 Plug 'Raimondi/delimitMate'
 Plug 'scrooloose/syntastic'
@@ -47,8 +48,10 @@ call plug#end()
 let g:hybrid_use_iTerm_colors = 1
 " colorscheme hybrid
 set background=dark
-colorscheme base16-ocean
-" colorscheme base16-tomorrow
+colorscheme base16-tomorrow
+
+set guioptions-=r 
+set guifont=Inconsolata-g\ For\ Powerline:h12
 
 " Highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
@@ -59,8 +62,9 @@ set history=1000
 set undofile
 set undoreload=10000
 set listchars=tab:▸\ ,extends:❯,precedes:❮,trail:·
-set fillchars=fold:\ ,vert:┃
-hi Folded ctermbg=0 guibg=#121620
+set fillchars=vert:┃
+" set fillchars=fold:\ ,vert:┃
+" hi Folded ctermbg=0 guibg=#121620
 
 " Save when losing focus
 au FocusLost * :silent! wall
@@ -235,6 +239,23 @@ let g:UltiSnipsEditSplit="vertical"
 " endif
 " }}}
 
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|bower_components'
+nnoremap <leader><Space> :CtrlPMixed<CR>
+nnoremap <leader>t :CtrlPTag<CR>
+nnoremap <leader>bt :CtrlPBufTag<CR>
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+if executable('ag')
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command =
+    \ 'ag %s --files-with-matches -g "" --ignore "\.git$\|\.hg$\|\.svn$"'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+else
+  " Fall back to using git ls-files if Ag is not available
+  let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
+  let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others']
+endif
+
 
 " autocmd! BufWritePost * Neomake

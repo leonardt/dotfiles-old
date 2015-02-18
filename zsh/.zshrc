@@ -1,3 +1,11 @@
+source $HOME/dotfiles/zsh/antigen/antigen.zsh
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-history-substring-search
+antigen bundle sindresorhus/pure
+antigen bundle virtualenvwrapper
+
+antigen apply
+
 # bind UP and DOWN arrow keys
 zmodload zsh/terminfo
 bindkey "$terminfo[kcuu1]" history-substring-search-up
@@ -14,8 +22,8 @@ bindkey -M vicmd 'j' history-substring-search-down
 fpath=(/usr/local/share/zsh-completions $fpath)
 fpath=($HOME/dotfiles/zsh $fpath)
 
-autoload -U promptinit && promptinit
-prompt pure
+# autoload -U promptinit && promptinit
+# prompt pure
 
 source $HOME/dotfiles/zsh/.zsh_aliases
 
@@ -62,8 +70,8 @@ source ~/.fzf.zsh
 # added by travis gem
 [ -f /Users/leonardtruong/.travis/travis.sh ] && source /Users/leonardtruong/.travis/travis.sh
 
-source $HOME/dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $HOME/dotfiles/zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
+# source $HOME/dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source $HOME/dotfiles/zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 # Completion
 autoload -Uz compinit
@@ -132,4 +140,4 @@ export DYLD_FALLBACK_LIBRARY_PATH=/usr/local/cuda/lib:/usr/local/lib:/usr/lib:
 export PYTHONPATH=$HOME/dev/projects/caffe/python:$PYTHONPATH
 
 export WORKON_HOME=~/.envs
-source /usr/local/bin/virtualenvwrapper.sh
+# source /usr/local/bin/virtualenvwrapper.sh
