@@ -26,9 +26,11 @@ Plug 'Raimondi/delimitMate'
 Plug 'scrooloose/syntastic'
 " Plug 'benekastah/neomake'
 
-Plug 'christoomey/vim-tmux-navigator'
+" Plug 'christoomey/vim-tmux-navigator'
 
-" Plug 'klen/python-mode'
+Plug 'klen/python-mode'
+" Plug 'jmcantrell/vim-virtualenv'
+" Plug 'vim-scripts/vim-nose'
 
 Plug 'chriskempson/base16-vim'
 
@@ -44,11 +46,15 @@ Plug 'petRUShka/vim-opencl'
 
 call plug#end()
 
+set background=dark
 " colorscheme gotham
 let g:hybrid_use_iTerm_colors = 1
-" colorscheme hybrid
-set background=dark
-colorscheme base16-tomorrow
+colorscheme hybrid
+" set background=dark
+" colorscheme base16-tomorrow
+
+hi CursorLine ctermbg=8
+" hi CursorLineNr ctermfg=238 ctermbg=235
 
 set guioptions-=r 
 set guifont=Inconsolata-g\ For\ Powerline:h12
@@ -198,7 +204,7 @@ let g:pymode_options_colorcolumn = 0
 let g:pymode_rope = 0
 let g:pymode_rope_completion = 0
 let g:pymode_breakpoint = 0
-let g:pymode_run = 0
+let g:pymode_run = 1
 " }}}
 
 " youcompleteme {{{
@@ -259,3 +265,4 @@ endif
 
 
 " autocmd! BufWritePost * Neomake
+" 
