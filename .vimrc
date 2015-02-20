@@ -44,19 +44,34 @@ Plug 'mattn/emmet-vim'
 
 Plug 'petRUShka/vim-opencl'
 
+Plug 'bling/vim-airline'
+
 call plug#end()
 
 set background=dark
 " colorscheme gotham
 let g:hybrid_use_iTerm_colors = 1
-colorscheme hybrid
+" colorscheme hybrid
 " set background=dark
-" colorscheme base16-tomorrow
+colorscheme base16-tomorrow
 
-hi CursorLine ctermbg=8
+" hi CursorLine ctermbg=8 term=bold cterm=bold
 " hi CursorLineNr ctermfg=238 ctermbg=235
 
-set guioptions-=r 
+fun! StripTrailingWhitespaces()
+    if &ft =~ 'markdown'
+      return
+    endif
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+
+" autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call StripTrailingWhitespaces()
+autocmd bufwritepre * :call StripTrailingWhitespaces()
+
+set guioptions-=r
 set guifont=Inconsolata-g\ For\ Powerline:h12
 
 " Highlight VCS conflict markers
@@ -83,6 +98,11 @@ set incsearch
 set ignorecase
 set smartcase
 set cursorline
+set laststatus=2
+let g:airline_theme='base16'
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+let g:airline_powerline_fonts=1
 
 if exists('$TMUX')
   let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
@@ -226,15 +246,15 @@ let g:UltiSnipsEditSplit="vertical"
 " unite {{{
 " call unite#filters#sorter_default#use(['sorter_rank'])
 " call unite#filters#matcher_default#use(['matcher_fuzzy'])
-" 
+"
 " nnoremap <leader>r :<C-u>Unite -start-insert file_rec/async:!<CR>
 " nnoremap <leader>b :<C-u>Unite buffer<CR>
 " let g:unite_source_history_yank_enable = 1
 " nnoremap <leader>y :<C-u>Unite history/yank<CR>
 " nnoremap <leader>o :<C-u>Unite outline<CR>
-" 
+"
 " if executable('ag')
-"   " let g:unite_source_rec_async_command = 
+"   " let g:unite_source_rec_async_command =
 "   "       \ 'ag --follow --nocolor --nogroup --ignore ".hg" --ignore ".svn"' .
 "   "       \ '--ignore ".git" --ignore ".bzr" --hidden -g ""'
 "   let g:unite_source_grep_command = 'ag'
@@ -265,4 +285,4 @@ endif
 
 
 " autocmd! BufWritePost * Neomake
-" 
+"

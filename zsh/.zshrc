@@ -120,16 +120,16 @@ bindkey -v
 # allow v to edit the command line (standard behaviour)
 # autoload -Uz edit-command-line
 # bindkey -M vicmd 'v' edit-command-line
-# 
+#
 # # if mode indicator wasn't setup by theme, define default
 # if [[ "$MODE_INDICATOR" == "" ]]; then
 #   MODE_INDICATOR="%{$fg_bold[red]%}<%{$fg[red]%}<<%{$reset_color%}"
 # fi
-# 
+#
 # function vi_mode_prompt_info() {
 #   echo "${${KEYMAP/vicmd/$MODE_INDICATOR}/(main|viins)/}"
 # }
-# 
+#
 # # define right prompt, if it wasn't defined by a theme
 # if [[ "$RPS1" == "" && "$RPROMPT" == "" ]]; then
 #   RPS1='$(vi_mode_prompt_info)'
@@ -141,3 +141,5 @@ export PYTHONPATH=$HOME/dev/projects/caffe/python:$PYTHONPATH
 
 export WORKON_HOME=~/.envs
 # source /usr/local/bin/virtualenvwrapper.sh
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
