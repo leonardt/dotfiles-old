@@ -141,3 +141,4 @@ export PYTHONPATH=$HOME/dev/projects/caffe/python:$PYTHONPATH
 
 export WORKON_HOME=~/.envs
 # source /usr/local/bin/virtualenvwrapper.sh
+source $HOME/.zshrc.ext
