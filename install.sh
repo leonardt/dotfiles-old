@@ -15,3 +15,6 @@ ln -s `pwd`/.emacs.d ~/.emacs.d
 mkdir -p ~/.vim/autoload
 curl -fLo ~/.vim/autoload/plug.vim \
     https://raw.github.com/junegunn/vim-plug/master/plug.vim
+
+git clone https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
