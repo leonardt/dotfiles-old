@@ -227,7 +227,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " }}}
 
 " Dispatch {{{
-nnoremap <Leader>d :Dispatch<CR>
+nnoremap <Leader>c :Dispatch<CR>
 " }}}
 
 " Fugitive {{{
@@ -273,7 +273,7 @@ let g:UltiSnipsEditSplit="vertical"
 " }}}
 
 " neocomplete {{{
-let g:jedi#completions_enabled=0
+let g:jedi#popup_on_dot=0
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
@@ -293,7 +293,7 @@ inoremap <expr><C-e>  neocomplete#cancel_popup()
 call unite#filters#sorter_default#use(['sorter_rank'])
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 
-nnoremap <leader>r :<C-u>Unite -start-insert file_rec/async:!<CR>
+nnoremap <leader>f :<C-u>Unite -start-insert file_rec/async:!<CR>
 nnoremap <leader>b :<C-u>Unite buffer<CR>
 let g:unite_source_history_yank_enable = 1
 nnoremap <leader>y :<C-u>Unite history/yank<CR>
