@@ -1,56 +1,85 @@
+if !1 | finish | endif
+
+if has('vim_starting')
+  if &compatible
+    set nocompatible               " Be iMproved
+  endif
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
+
+" Required:
+call neobundle#begin(expand('~/.vim/bundle/'))
+
 if has('nvim')
   runtime! python_setup.vim
 endif
 
-call plug#begin('~/.vim/plugged')
+" call plug#begin('~/.vim/plugged')
 
 syntax on
 
-Plug 'whatyouhide/vim-gotham'
-Plug 'w0ng/vim-hybrid'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer' }
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+NeoBundleFetch 'Shougo/neobundle.vim'
 
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-commentary', { 'on': '<Plug>Commentary' }
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-dispatch'
-Plug 'tpope/vim-markdown', { 'for': ['markdown', 'md']}
+NeoBundle 'whatyouhide/vim-gotham'
+NeoBundle 'w0ng/vim-hybrid'
+" NeoBundle 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer' }
+NeoBundle 'SirVer/ultisnips'
+NeoBundle 'honza/vim-snippets'
 
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'rking/ag.vim'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-commentary'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-repeat'
+NeoBundle 'tpope/vim-dispatch'
+NeoBundle 'tpope/vim-markdown'
 
-Plug 'Raimondi/delimitMate'
-Plug 'scrooloose/syntastic'
-" Plug 'benekastah/neomake'
+NeoBundle 'ctrlpvim/ctrlp.vim'
+NeoBundle 'rking/ag.vim'
 
-" Plug 'christoomey/vim-tmux-navigator'
+NeoBundle 'Raimondi/delimitMate'
+NeoBundle 'scrooloose/syntastic'
+" NeoBundle 'benekastah/neomake'
 
-Plug 'klen/python-mode'
-" Plug 'jmcantrell/vim-virtualenv'
-" Plug 'vim-scripts/vim-nose'
+" NeoBundle 'christoomey/vim-tmux-navigator'
 
-Plug 'chriskempson/base16-vim'
+NeoBundle 'klen/python-mode'
+NeoBundle 'davidhalter/jedi-vim'
+" NeoBundle 'jmcantrell/vim-virtualenv'
+" NeoBundle 'vim-scripts/vim-nose'
 
-" Plug 'benekastah/neomake'
+NeoBundle 'chriskempson/base16-vim'
 
-Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }
-Plug 'mattn/emmet-vim'
+" NeoBundle 'benekastah/neomake'
 
-" Plug 'Shougo/unite.vim'
-" Plug 'Shougo/vimproc.vim', { 'do': 'make -f make_mac.mak' }
+" NeoBundle 'marijnh/tern_for_vim', { 'do': 'npm install' }
+" NeoBundle 'mattn/emmet-vim'
 
-Plug 'petRUShka/vim-opencl'
+NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/unite-outline'
+NeoBundle 'Shougo/neomru.vim'
+NeoBundle 'Shougo/vimproc.vim', {
+\ 'build' : {
+\     'windows' : 'tools\\update-dll-mingw',
+\     'cygwin' : 'make -f make_cygwin.mak',
+\     'mac' : 'make -f make_mac.mak',
+\     'linux' : 'make',
+\     'unix' : 'gmake',
+\    },
+\ }
 
-Plug 'bling/vim-airline'
+NeoBundle 'petRUShka/vim-opencl'
 
-call plug#end()
+NeoBundle 'bling/vim-airline'
+
+" call plug#end()
+call neobundle#end()
+
+NeoBundleCheck
 
 set background=dark
 " colorscheme gotham
-let g:hybrid_use_iTerm_colors = 1
+" let g:hybrid_use_iTerm_colors = 1
 " colorscheme hybrid
 " set background=dark
 colorscheme base16-tomorrow
@@ -102,7 +131,7 @@ set laststatus=2
 let g:airline_theme='base16'
 let g:airline_left_sep=''
 let g:airline_right_sep=''
-let g:airline_powerline_fonts=1
+let g:airline_powerline_fonts=0
 
 if exists('$TMUX')
   let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
@@ -243,45 +272,62 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsEditSplit="vertical"
 " }}}
 
-" unite {{{
-" call unite#filters#sorter_default#use(['sorter_rank'])
-" call unite#filters#matcher_default#use(['matcher_fuzzy'])
-"
-" nnoremap <leader>r :<C-u>Unite -start-insert file_rec/async:!<CR>
-" nnoremap <leader>b :<C-u>Unite buffer<CR>
-" let g:unite_source_history_yank_enable = 1
-" nnoremap <leader>y :<C-u>Unite history/yank<CR>
-" nnoremap <leader>o :<C-u>Unite outline<CR>
-"
-" if executable('ag')
-"   " let g:unite_source_rec_async_command =
-"   "       \ 'ag --follow --nocolor --nogroup --ignore ".hg" --ignore ".svn"' .
-"   "       \ '--ignore ".git" --ignore ".bzr" --hidden -g ""'
-"   let g:unite_source_grep_command = 'ag'
-"   let g:unite_source_grep_default_opts =
-"   \ '-i --line-numbers --nocolor --nogroup --hidden --ignore ' .
-"   \  '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
-"   let g:unite_source_grep_recursive_opt = ''
-" endif
+" neocomplete {{{
+let g:jedi#completions_enabled=0
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return neocomplete#close_popup() . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+endfunction
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplete#close_popup()
+inoremap <expr><C-e>  neocomplete#cancel_popup()
 " }}}
 
-nnoremap <leader><Space> :CtrlPMixed<CR>
-nnoremap <leader>t :CtrlPTag<CR>
-nnoremap <leader>bt :CtrlPBufTag<CR>
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-if executable('ag')
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command =
-    \ 'ag %s --files-with-matches -g "" --ignore "\.git$\|\.hg$\|\.svn$"'
+" unite {{{
+call unite#filters#sorter_default#use(['sorter_rank'])
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
 
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
-else
-  " Fall back to using git ls-files if Ag is not available
-  let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
-  let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others']
+nnoremap <leader>r :<C-u>Unite -start-insert file_rec/async:!<CR>
+nnoremap <leader>b :<C-u>Unite buffer<CR>
+let g:unite_source_history_yank_enable = 1
+nnoremap <leader>y :<C-u>Unite history/yank<CR>
+nnoremap <leader>o :<C-u>Unite outline<CR>
+nnoremap <leader><Space> :<C-u>Unite file_mru<CR>
+nnoremap <Leader>g :<C-u>Unite grep:.<CR>
+
+if executable('ag')
+  let g:unite_source_rec_async_command = 'ag --follow --nocolor --nogroup --hidden -g ""'
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts =
+  \ '-i --line-numbers --nocolor --nogroup --hidden --ignore ' .
+  \  '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
+  let g:unite_source_grep_recursive_opt = ''
 endif
+" }}}
+
+" nnoremap <leader><Space> :CtrlPMixed<CR>
+" nnoremap <leader>t :CtrlPTag<CR>
+" nnoremap <leader>bt :CtrlPBufTag<CR>
+" let g:ctrlp_working_path_mode = 'ra'
+" let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+" if executable('ag')
+"   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+"   let g:ctrlp_user_command =
+"     \ 'ag %s --files-with-matches -g "" --ignore "\.git$\|\.hg$\|\.svn$"'
+
+"   " ag is fast enough that CtrlP doesn't need to cache
+"   let g:ctrlp_use_caching = 0
+" else
+"   " Fall back to using git ls-files if Ag is not available
+"   let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
+"   let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others']
+" endif
 
 
 " autocmd! BufWritePost * Neomake
