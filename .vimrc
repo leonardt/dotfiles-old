@@ -33,7 +33,7 @@ NeoBundle 'tpope/vim-repeat'
 NeoBundle 'tpope/vim-dispatch'
 NeoBundle 'tpope/vim-markdown'
 
-NeoBundle 'ctrlpvim/ctrlp.vim'
+" NeoBundle 'ctrlpvim/ctrlp.vim'
 NeoBundle 'rking/ag.vim'
 
 NeoBundle 'Raimondi/delimitMate'
@@ -42,7 +42,7 @@ NeoBundle 'scrooloose/syntastic'
 
 " NeoBundle 'christoomey/vim-tmux-navigator'
 
-NeoBundle 'klen/python-mode'
+" NeoBundle 'klen/python-mode'
 NeoBundle 'davidhalter/jedi-vim'
 " NeoBundle 'jmcantrell/vim-virtualenv'
 " NeoBundle 'vim-scripts/vim-nose'
@@ -113,6 +113,8 @@ set undofile
 set undoreload=10000
 set listchars=tab:▸\ ,extends:❯,precedes:❮,trail:·
 set fillchars=vert:┃
+set autoindent
+set smartindent
 " set fillchars=fold:\ ,vert:┃
 " hi Folded ctermbg=0 guibg=#121620
 
@@ -287,6 +289,9 @@ inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplete#close_popup()
 inoremap <expr><C-e>  neocomplete#cancel_popup()
+if has("patch-7.4.314")
+  set shortmess+=c
+endif
 " }}}
 
 " unite {{{
@@ -294,6 +299,7 @@ call unite#filters#sorter_default#use(['sorter_rank'])
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 
 nnoremap <leader>f :<C-u>Unite -start-insert file_rec/async:!<CR>
+nnoremap <C-p> :<C-u>Unite -start-insert file_rec/async:!<CR>
 nnoremap <leader>b :<C-u>Unite buffer<CR>
 let g:unite_source_history_yank_enable = 1
 nnoremap <leader>y :<C-u>Unite history/yank<CR>
