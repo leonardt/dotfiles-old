@@ -29,7 +29,7 @@ Plug 'scrooloose/syntastic'
 
 Plug 'klen/python-mode'
 Plug 'hynek/vim-python-pep8-indent'
-Plug 'davidhalter/jedi-vim'
+" Plug 'davidhalter/jedi-vim'
 " Plug 'jmcantrell/vim-virtualenv'
 " Plug 'vim-scripts/vim-nose'
 
