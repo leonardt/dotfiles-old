@@ -14,10 +14,10 @@ touch ~/.zshrc.ext
 # ln -s `pwd`/zsh/pure/pure.zsh `pwd`/zsh/prompt_pure_setup
 
 # Install vim-plug
-# mkdir -p ~/.vim/autoload
-# curl -fLo ~/.vim/autoload/plug.vim \
-#     https://raw.github.com/junegunn/vim-plug/master/plug.vim
-curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh | sh
+mkdir -p ~/.vim/autoload
+curl -fLo ~/.vim/autoload/plug.vim \
+    https://raw.github.com/junegunn/vim-plug/master/plug.vim
+# curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh | sh
 
 git clone https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
