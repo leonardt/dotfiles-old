@@ -68,9 +68,10 @@ call plug#end()
 set background=dark
 " colorscheme gotham
 " let g:hybrid_use_iTerm_colors = 1
-" colorscheme hybrid
+let g:hybrid_use_Xresources = 1
+colorscheme hybrid
 " set background=dark
-colorscheme base16-tomorrow
+"colorscheme base16-tomorrow
 
 " hi CursorLine ctermbg=8 term=bold cterm=bold
 " hi CursorLineNr ctermfg=238 ctermbg=235
@@ -89,7 +90,7 @@ endfun
 autocmd bufwritepre * :call StripTrailingWhitespaces()
 
 set guioptions-=r
-set guifont=Inconsolata-g\ For\ Powerline:h12
+set guifont=DejaVu\ Sans\ Mono\ For\ Powerline:h12
 
 " Highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
@@ -120,9 +121,7 @@ set smartcase
 set cursorline
 set laststatus=2
 let g:airline_theme='base16'
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-let g:airline_powerline_fonts=0
+let g:airline_powerline_fonts=1
 
 if exists('$TMUX')
   let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
