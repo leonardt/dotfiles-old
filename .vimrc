@@ -90,7 +90,7 @@ endfun
 autocmd bufwritepre * :call StripTrailingWhitespaces()
 
 set guioptions-=r
-set guifont=DejaVu\ Sans\ Mono\ For\ Powerline:h12
+set guifont=Droid\ Sans\ Mono\ For\ Powerline:h12
 
 " Highlight VCS conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
@@ -121,14 +121,13 @@ set smartcase
 set cursorline
 set laststatus=2
 let g:airline_theme='base16'
-let g:airline_powerline_fonts=1
+let g:airline_powerline_fonts=0
+let g:airline_left_sep=''
+let g:airline_right_sep=''
 
 if exists('$TMUX')
-  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-else
-  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
 endif
 
 
