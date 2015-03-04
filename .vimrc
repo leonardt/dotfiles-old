@@ -6,10 +6,12 @@ call plug#begin('~/.vim/plugged')
 Plug 'szw/vim-ctrlspace'
 Plug 'whatyouhide/vim-gotham'
 Plug 'w0ng/vim-hybrid'
-Plug 'ervandew/supertab'
+" Plug 'ervandew/supertab'
 " Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer' }
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+
+Plug 'Rip-Rip/clang_complete'
 
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
@@ -23,13 +25,13 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'rking/ag.vim'
 
 Plug 'Raimondi/delimitMate'
-" Plug 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic'
 " Plug 'benekastah/neomake'
 
 " Plug 'christoomey/vim-tmux-navigator'
 
 " Plug 'klen/python-mode'
-" Plug 'hynek/vim-python-pep8-indent'
+Plug 'hynek/vim-python-pep8-indent'
 Plug 'davidhalter/jedi-vim'
 " Plug 'jmcantrell/vim-virtualenv'
 " Plug 'vim-scripts/vim-nose'
@@ -41,7 +43,7 @@ Plug 'chriskempson/base16-vim'
 " Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }
 " Plug 'mattn/emmet-vim'
 
-" Plug 'Shougo/neocomplete.vim'
+Plug 'Shougo/neocomplete.vim'
 " Plug 'Shougo/unite.vim'
 " Plug 'Shougo/unite-outline'
 " Plug 'Shougo/neomru.vim'
@@ -67,12 +69,12 @@ call plug#end()
 " NeoBundleCheck
 
 set background=dark
-" colorscheme gotham
+colorscheme gotham
 " let g:hybrid_use_iTerm_colors = 1
 if !has("gui_running")
   let g:hybrid_use_Xresources = 1
 endif
-colorscheme hybrid
+" colorscheme hybrid
 " set background=dark
 "colorscheme base16-tomorrow
 
@@ -123,14 +125,17 @@ set ignorecase
 set smartcase
 set cursorline
 set laststatus=2
-let g:airline_theme='base16'
+let g:airline_theme='gotham'
 let g:airline_powerline_fonts=0
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 
 if exists('$TMUX')
-    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
 
 
@@ -260,21 +265,33 @@ let g:UltiSnipsEditSplit="vertical"
 " }}}
 
 " neocomplete {{{
-" let g:neocomplete#enable_at_startup = 1
-" let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#enable_at_startup = 1
 
-" if !exists('g:neocomplete#force_omni_input_patterns')
-"         let g:neocomplete#force_omni_input_patterns = {}
-" endif
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
 
-" if !exists('g:neocomplete#sources#omni#input_patterns')
-"   let g:neocomplete#sources#omni#input_patterns = {}
-" endif
-" autocmd FileType python setlocal omnifunc=jedi#completions
-" let g:jedi#completions_enabled = 0
-" let g:jedi#auto_vim_configuration = 0
-" let g:neocomplete#force_omni_input_patterns.python =
-" \ '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+
+" Define keyword.
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+if !exists('g:neocomplete#force_omni_input_patterns')
+        let g:neocomplete#force_omni_input_patterns = {}
+endif
+
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+autocmd FileType python setlocal omnifunc=jedi#completions
+let g:jedi#completions_enabled = 0
+let g:jedi#auto_vim_configuration = 0
+let g:neocomplete#force_omni_input_patterns.python =
+\ '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
 " " alternative pattern: '\h\w*\|[^. \t]\.\w*'
 " " inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 " " function! s:my_cr_function()
@@ -282,14 +299,16 @@ let g:UltiSnipsEditSplit="vertical"
 " "   " For no inserting <CR> key.
 " "   "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
 " " endfunction
-" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 " inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 " inoremap <expr><C-y>  neocomplete#close_popup()
 " inoremap <expr><C-e>  neocomplete#cancel_popup()
-" if has("patch-7.4.314")
-"   set shortmess+=c
-" endif
+if has("patch-7.4.314")
+  set shortmess+=c
+endif
 
 " " Plugin key-mappings.
 " imap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -338,9 +357,8 @@ else
   let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others']
 endif
 
-
-" autocmd! BufWritePost * Neomake
-
-" supertab {{{
-let g:SuperTabDefaultCompletionType = "context"
+" syntastic {{{
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
 " }}}
