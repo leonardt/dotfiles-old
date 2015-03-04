@@ -6,7 +6,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'szw/vim-ctrlspace'
 Plug 'whatyouhide/vim-gotham'
 Plug 'w0ng/vim-hybrid'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer' }
+Plug 'ervandew/supertab'
+" Plug 'Valloric/YouCompleteMe', { 'do': './install.sh --clang-completer' }
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
@@ -22,14 +23,14 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'rking/ag.vim'
 
 Plug 'Raimondi/delimitMate'
-Plug 'scrooloose/syntastic'
+" Plug 'scrooloose/syntastic'
 " Plug 'benekastah/neomake'
 
 " Plug 'christoomey/vim-tmux-navigator'
 
-Plug 'klen/python-mode'
-Plug 'hynek/vim-python-pep8-indent'
-" Plug 'davidhalter/jedi-vim'
+" Plug 'klen/python-mode'
+" Plug 'hynek/vim-python-pep8-indent'
+Plug 'davidhalter/jedi-vim'
 " Plug 'jmcantrell/vim-virtualenv'
 " Plug 'vim-scripts/vim-nose'
 
@@ -68,7 +69,9 @@ call plug#end()
 set background=dark
 " colorscheme gotham
 " let g:hybrid_use_iTerm_colors = 1
-let g:hybrid_use_Xresources = 1
+if !has("gui_running")
+  let g:hybrid_use_Xresources = 1
+endif
 colorscheme hybrid
 " set background=dark
 "colorscheme base16-tomorrow
@@ -209,12 +212,6 @@ augroup END
 " }}}
 
 
-" UltiSnips {{{
-let g:UltiSnipsExpandTrigger="<c-k>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-" }}}
-
 " Dispatch {{{
 nnoremap <Leader>c :Dispatch<CR>
 " }}}
@@ -343,4 +340,7 @@ endif
 
 
 " autocmd! BufWritePost * Neomake
-"
+
+" supertab {{{
+let g:SuperTabDefaultCompletionType = "context"
+" }}}
